@@ -2,7 +2,7 @@ import React, { useCallback } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Url, Url_img, en } from "../hooks";
 import { flexing } from "../utils";
-import { useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 type Item = {
   id: number;
@@ -18,61 +18,57 @@ type ItemSet = {
   items: Item[];
 };
 
-const MemoizedImage = React.memo(
-  ({ src, alt }: { src: string; alt: string }) => (
-    <img
-      className="image"
-      loading="lazy"
-      src={`${Url_img}/${src}`}
-      alt={alt}
+const Image = ({ src, alt }: { src: string; alt: string }) => (
+  <img
+    className="image"
+    loading="lazy"
+    src={`${Url_img}/${src}`}
+    alt={alt}
+    style={{
+      width: "100%",
+      height: "100%",
+      objectFit: "cover",
+    }}
+  />
+);
+
+const Item = ({
+  item,
+  onItemClick,
+}: {
+  item: Item;
+  onItemClick: (itemId: number) => void;
+}) => {
+  const handleClick = useCallback(() => {
+    onItemClick(item.id);
+  }, [item.id, onItemClick]);
+
+  return (
+    <div
       style={{
-        width: "100%",
-        height: "100%",
-        objectFit: "cover",
+        display: "inline-block",
+        margin: "8px",
+        width: `${item.focus_width}%`,
+        height: "300px",
+        overflow: "hidden",
+        position: "relative",
       }}
-    />
-  )
-);
-
-const MemoizedItem = React.memo(
-  ({
-    item,
-    onItemClick,
-  }: {
-    item: Item;
-    onItemClick: (itemId: number) => void;
-  }) => {
-    const handleClick = useCallback(() => {
-      onItemClick(item.id);
-    }, [item.id, onItemClick]);
-
-    return (
-      <div
-        style={{
-          display: "inline-block",
-          margin: "8px",
-          width: `${item.focus_width}%`,
-          height: "300px",
-          overflow: "hidden",
-          position: "relative",
-        }}
-        className="cursor-pointer relative hover-div"
-        onClick={handleClick}
-      >
-        <MemoizedImage src={item.img_url} alt={item.name} />
-        <p className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white uppercase transition text-lg w4  hover:text-black">
-          {item.name}
-        </p>
-      </div>
-    );
-  }
-);
+      className="cursor-pointer relative hover-div"
+      onClick={handleClick}
+    >
+      <Image src={item.img_url} alt={item.name} />
+      <p className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white uppercase transition text-lg w4  hover:text-black">
+        {item.name}
+      </p>
+    </div>
+  );
+};
 
 const Hero = () => {
   const navigate = useNavigate();
   const { isPending, error, data } = useQuery<ItemSet[]>({
-    refetchOnMount:false,
-    refetchOnWindowFocus:false,
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
     queryKey: ["focusdata"],
     queryFn: () => fetch(`${Url}/${en}/focus`).then((res) => res.json()),
   });
@@ -90,7 +86,6 @@ const Hero = () => {
   if (error) return "An error has occurred: " + error.message;
 
   const handleItemClick = (itemId: number, category_id: number) => {
-    // Handle item click logic here
     navigate(`${category_id}/${itemId}`);
   };
 
@@ -101,7 +96,7 @@ const Hero = () => {
           data.map((itemSet, setIndex) => (
             <div key={setIndex} className="flex">
               {itemSet?.items?.map((item) => (
-                <MemoizedItem
+                <Item
                   key={item.id}
                   item={item}
                   onItemClick={() => handleItemClick(item.id, item.category_id)}

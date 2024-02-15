@@ -2,8 +2,6 @@ import { Link } from "react-router-dom";
 import { flexing } from "../utils";
 import Search from "./Search";
 
-
-
 const Header = () => {
   return (
     <>
@@ -18,7 +16,9 @@ const Header = () => {
         </ul>
 
         <div>
-          <Link to={"/"} className="uppercase  w7">Deltaagro</Link>
+          <Link to={"/"} className="uppercase  w7">
+            Deltaagro
+          </Link>
         </div>
         <div className={`${flexing} gap-x-10`}>
           <div className="p-1 flex flex-col  gap-y-2">
@@ -30,7 +30,6 @@ const Header = () => {
           </div>
         </div>
       </section>
-     
     </>
   );
 };

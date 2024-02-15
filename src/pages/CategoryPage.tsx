@@ -6,13 +6,14 @@ import { CategoryItems } from "../types";
 import { flexing } from "../utils";
 import { Link, useParams } from "react-router-dom";
 import Category from "../components/SubCategory";
+import CategorieItems from "../components/CategorieItems";
 
 const CategoryPage = () => {
   let { catname } = useParams();
 
   const { isFetching, error, data } = useQuery<CategoryItems>({
-    refetchOnMount:false,
-    refetchOnWindowFocus:false,
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
     queryKey: ["categoryitems", catname],
     queryFn: () =>
       fetch(`${Url}/${en}/filteritems/${catname}`).then((res) => res.json()),
@@ -39,40 +40,17 @@ const CategoryPage = () => {
         name={data?.category?.name}
         imageurl={`${Url_img}/${data?.category?.img_url}`}
       />
-      <Category/>
+      <Category />
       <main className="w-full flex flex-col items-center ">
         <section className="flex flex-wrap justify-center items-center w-[70%] mt-10 ">
           {data && data.items.length > 0 ? (
             data?.items?.map((itemSet, setIndex) => (
-              <Link to={String(itemSet?.id)}>            
-              <div className="m-3 " key={setIndex}>
-                <div
-                  key={itemSet?.id}
-                  style={{
-                    display: "inline-block",
-                    margin: "8px",
-                    overflow: "hidden",
-                    position: "relative",
-                  }}
-                  className="cursor-pointer relative hover-div  w-[300px] h-[300px]  "
-                >
-                  <img
-                    className="image"
-                    src={`${Url_img}/${itemSet?.img_url}`}
-                    alt={itemSet?.name}
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                    }}
-                  />
-
-                  <p className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white uppercase transition text-lg w4  hover:text-black">
-                    {itemSet?.name}
-                  </p>
-                </div>
-              </div>
-              </Link>
+              <CategorieItems
+                id={itemSet.id}
+                name={itemSet.name}
+                key={setIndex}
+                url={itemSet.img_url}
+              />
             ))
           ) : (
             <div className={`${flexing}`}>
