@@ -1,4 +1,4 @@
-import  { useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Url, Url_img, en } from "../hooks";
 import { flexing } from "../utils";
@@ -18,17 +18,33 @@ type ItemSet = {
   items: Item[];
 };
 
-const Image = ({ src, alt }: { src: string; alt: string }) => (
+const useMediaQuery = (query: string) => {
+  const [matches, setMatches] = useState(window.matchMedia(query).matches);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia(query);
+    const handler = (event: MediaQueryListEvent) => setMatches(event.matches);
+
+    mediaQuery.addEventListener("change", handler);
+    setMatches(mediaQuery.matches);
+
+    return () => mediaQuery.removeEventListener("change", handler);
+  }, [query]);
+
+  return matches;
+};
+
+const Image = ({ src, alt, isMaxMd }: { src: string; alt: string; isMaxMd: boolean }) => (
   <img
-    className="image"
     loading="lazy"
     src={`${Url_img}/${src}`}
     alt={alt}
     style={{
-      width: "100%",
+      width: isMaxMd ? "100%" : "100%",
       height: "100%",
       objectFit: "cover",
     }}
+    className="image "
   />
 );
 
@@ -43,12 +59,17 @@ const Item = ({
     onItemClick(item.id);
   }, [item.id, onItemClick]);
 
+  const isMaxMd = useMediaQuery("(max-width: 768px)");
+
+  // Adjust the image width calculation for better responsiveness
+  const imageWidth = isMaxMd ? "100%" : "50%"; // You can adjust this value based on your design
+
   return (
     <div
       style={{
         display: "inline-block",
         margin: "8px",
-        width: `${item.focus_width}%`,
+        width: imageWidth,
         height: "300px",
         overflow: "hidden",
         position: "relative",
@@ -56,7 +77,7 @@ const Item = ({
       className="cursor-pointer relative hover-div"
       onClick={handleClick}
     >
-      <Image src={item.img_url} alt={item.name} />
+      <Image src={item.img_url} alt={item.name} isMaxMd={isMaxMd} />
       <p className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white uppercase transition text-lg w4  hover:text-black">
         {item.name}
       </p>
@@ -90,11 +111,11 @@ const Hero = () => {
   };
 
   return (
-    <section className="flex flex-col justify-center items-center mt-20 ml-14">
-      <div style={{ width: "65%", margin: "auto" }} className="">
+    <section className="flex flex-col justify-center items-center mt-20 ">
+      <div style={{ maxWidth: '1200px', margin: "auto" }} className="">
         {data && data.length > 0 ? (
           data.map((itemSet, setIndex) => (
-            <div key={setIndex} className="flex">
+            <div key={setIndex} className="flex max-md:flex-col">
               {itemSet?.items?.map((item) => (
                 <Item
                   key={item.id}

@@ -27,7 +27,7 @@ const AdCampain = ({ ishome }: videoProps) => {
 
   return (
     <section className="bg-[#f5f5f5] text-center m-14 p-8 rounded-3xl">
-      <h1 className="text-black text-[2rem] w5 my-3 ">AD CAMPAIGN</h1>
+      <h1 className="text-black text-[2rem] w5 my-3  ">AD CAMPAIGN</h1>
 
       {data && (
         <video
@@ -37,7 +37,7 @@ const AdCampain = ({ ishome }: videoProps) => {
               : `${Url_img}/${data?.category_ad?.url} `
           }
           controls
-          className="w-[400px] h-[400px] max-w-md mx-auto shadow-lg rounded-lg object-cover"
+          className="w-[300px] h-[300px] max-w-md mx-auto shadow-lg rounded-lg object-cover"
         ></video>
       )}
     </section>

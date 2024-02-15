@@ -41,11 +41,11 @@ const Footer = () => {
 
   return (
     <footer
-      className={`${flexing} mt-10 bg-[#2A2A2A] px-6 text-white Rubik w4 justify-between p-7`}
+      className={`${flexing} mt-10 bg-[#2A2A2A] px-6 text-white Rubik w4 justify-between p-7 max-md:flex-col`}
     >
       <div>
         <h1>LOGO</h1>
-        <p className="text-[13px] text-gray-200 w4 w-[400px]">{data?.text}</p>
+        <p className="text-[13px] text-gray-200 w4 w-[400px] max-md:max-w-[310px] ">{data?.text}</p>
       </div>
 
       <div className="text-center flex flex-col gap-y-3 ">
@@ -74,7 +74,7 @@ const Footer = () => {
           )}
         </ul>
       </div>
-      <div className={`${flexing} w-[400px]`}>
+      <div className={`${flexing} max-w-[320px]`}>
         {/* <h2>CustomerService</h2>
         <span>&nbsp;.&nbsp;</span>
         <h2>PrivacyPolicy</h2> */}
