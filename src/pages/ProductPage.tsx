@@ -11,8 +11,8 @@ const ProductPage = () => {
   let { productid, catname } = useParams();
 
   const { isFetching, error, data } = useQuery<CategoryItems>({
-    refetchOnMount:false,
-    refetchOnWindowFocus:false,
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
     queryKey: ["items", productid],
     queryFn: () =>
       fetch(`${Url}/${en}/filteritems/${catname}`).then((res) => res.json()),
@@ -68,9 +68,8 @@ const ProductPage = () => {
         </article>
       </section>
 
-
       <article className="flex flex-col justify-center items-center mt-20">
-      <h1 className="m-7 text-[2rem]  w5">Favorite Products</h1>
+        <h1 className="m-7 text-[2rem]  w5">Related Products</h1>
         <RandomProductList items={data?.items} />
       </article>
     </>

@@ -16,8 +16,8 @@ type CarouselProps = {
 
 const MainCarousel = () => {
   const { isPending, error, data } = useQuery<CarouselProps[]>({
-    refetchOnMount:false,
-    refetchOnWindowFocus:false,
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
     queryKey: ["carousel"],
     queryFn: () => fetch(`${Url}/${en}/headers`).then((res) => res.json()),
   });
@@ -41,7 +41,6 @@ const MainCarousel = () => {
         infiniteLoop
         className=""
         showStatus={false}
-      
         showIndicators={false}
         stopOnHover
         showThumbs={false}
@@ -55,7 +54,9 @@ const MainCarousel = () => {
               title={label}
               className="custom-arrow custom-arrow-left z-10  "
             >
-              <span className="arrow-left"><GrPrevious  className="text-[#334774] text-[2.5rem]"/></span>
+              <span className="arrow-left">
+                <GrPrevious className="text-[#334774] text-[2.5rem]" />
+              </span>
             </button>
           )
         }
@@ -67,7 +68,9 @@ const MainCarousel = () => {
               title={label}
               className="custom-arrow custom-arrow-right z-10"
             >
-              <span className="arrow-right"><GrNext  className="text-[#334774] text-[2.5rem]"/></span>
+              <span className="arrow-right">
+                <GrNext className="text-[#334774] text-[2.5rem]" />
+              </span>
             </button>
           )
         }
