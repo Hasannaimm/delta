@@ -1,6 +1,6 @@
 export type ProductCardType = {
   image: string;
-  name: string|undefined;
+  name: string | undefined;
   sub: string;
 };
 
@@ -32,7 +32,7 @@ export type Item = {
 
 export type CategoryItems = {
   category: Category;
-  items: Item[] ;
+  items: Item[];
 };
 
 export type videoProps = {
@@ -45,3 +45,15 @@ export type AdItem = {
 };
 
 export type AdList = AdItem[];
+
+interface Ad {
+  id: number;
+  url: string;
+  location: string;
+}
+
+export interface AdData {
+  home_ad: Ad | undefined;
+  banner: Ad | undefined;
+  category_ad: Ad | undefined;
+}

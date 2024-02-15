@@ -1,21 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import { Url, Url_img, en } from "../hooks";
-import { AdList } from "../types";
-
-interface AdProps {
-  id: number;
-  url: string;
-  location: string;
-}
-
-interface AdArr {
-  ads: AdProps[];
-}
+import { AdData } from "../types";
 
 const BannerAd = () => {
-  const { isFetching, error, data } = useQuery<AdArr>({
+  const { isFetching, error, data } = useQuery<AdData>({
     queryKey: ["bad"],
     queryFn: () => fetch(`${Url}/${en}/ads`).then((res) => res.json()),
+   
   });
 
   if (isFetching) {
@@ -30,23 +21,25 @@ const BannerAd = () => {
   }
 
   if (error) {
-    return <div>An error has occurred: {error.message}</div>;
+    return <div className="flex justify-center items-center ">Network error</div>;
   }
 
-
-
-  const banner = data?.ads && data?.ads.find((ads) => ads.location === "banner");
-
   return (
-    <div className="w-full h-full">
-      {banner && (
-        <img
-          src={`${Url_img}/${banner.url}`}
-          alt={banner.location}
-          className="w-full h-full object-cover"
-        />
-      )}
-      <div className="absolute inset-0 rounded-lg shadow-md"></div>
+    <div
+      className={`w-[200px] h-[500px] m-3 absolute top-1/4 left-14 cursor-pointer shadow-md ${
+        data?.banner ? " " : "hidden"
+      } `}
+    >
+      <div className="w-full h-full">
+        {data && (
+          <img
+            src={`${Url_img}/${data?.banner?.url}`}
+            alt={data?.banner?.location}
+            className="w-full h-full object-cover"
+          />
+        )}
+        <div className="absolute inset-0 rounded-lg shadow-md"></div>
+      </div>
     </div>
   );
 };

@@ -4,7 +4,6 @@ import Star from "../components/Star";
 import AdCampain from "../components/AdCampain";
 import BannerAd from "../components/BannerAd";
 
-
 const HomePage = () => {
   return (
     <>
@@ -12,9 +11,7 @@ const HomePage = () => {
         <MainCarousel />
 
         <section className={`relative`}>
-          <div className="w-[200px] h-[500px] m-3 absolute top-1/4 left-14 cursor-pointer shadow-md ">
-           <BannerAd />
-          </div>
+          <BannerAd />
 
           <Hero />
         </section>

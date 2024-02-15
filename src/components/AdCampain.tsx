@@ -1,10 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import { Url, Url_img, en } from "../hooks";
-import { AdList, videoProps } from "../types";
-
+import { AdData, videoProps } from "../types";
 
 const AdCampain = ({ ishome }: videoProps) => {
-  const { isFetching, error, data } = useQuery<AdList | undefined>({
+  const { isFetching, error, data } = useQuery<AdData | undefined>({
     queryKey: ["vdad"],
     queryFn: () => fetch(`${Url}/${en}/ads`).then((res) => res.json()),
   });
@@ -32,8 +31,8 @@ const AdCampain = ({ ishome }: videoProps) => {
         <video
           src={
             ishome
-              ? `${Url_img}/${data[0]?.url} `
-              : `${Url_img}/${data[2]?.url} `
+              ? `${Url_img}/${data?.home_ad?.url} `
+              : `${Url_img}/${data?.category_ad?.url} `
           }
           controls
           className="w-[400px] h-[400px] max-w-md mx-auto shadow-lg rounded-lg object-cover"
