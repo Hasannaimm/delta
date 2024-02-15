@@ -4,7 +4,7 @@ import CategoriesHero from "../components/CategoriesHero";
 import { Url, Url_img, en } from "../hooks";
 import { CategoryItems } from "../types";
 import { flexing } from "../utils";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Category from "../components/SubCategory";
 import CategorieItems from "../components/CategorieItems";
 

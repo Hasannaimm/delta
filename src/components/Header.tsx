@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { flexing } from "../utils";
 import Search from "./Search";
+import { logo } from "../assets";
 
 const Header = () => {
   return (
@@ -17,7 +18,7 @@ const Header = () => {
 
         <div>
           <Link to={"/"} className="uppercase  w7">
-            Deltaagro
+           <img src={logo} height={100} width={100} alt="logo" />
           </Link>
         </div>
         <div className={`${flexing} gap-x-10`}>

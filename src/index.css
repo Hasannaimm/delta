@@ -148,12 +148,7 @@
 }
 
 .hover-div:hover::before {
-  background: rgba(
-    255,
-    255,
-    255,
-    0.5
-  ); 
+  background: rgba(255, 255, 255, 0.726); 
 }
 
 .hover-div:hover p {
