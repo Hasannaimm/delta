@@ -4,6 +4,8 @@ import { AdData } from "../types";
 
 const BannerAd = () => {
   const { isFetching, error, data } = useQuery<AdData>({
+    refetchOnMount:false,
+    refetchOnWindowFocus:false,
     queryKey: ["bad"],
     queryFn: () => fetch(`${Url}/${en}/ads`).then((res) => res.json()),
    

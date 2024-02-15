@@ -11,6 +11,8 @@ const CategoryPage = () => {
   let { catname } = useParams();
 
   const { isFetching, error, data } = useQuery<CategoryItems>({
+    refetchOnMount:false,
+    refetchOnWindowFocus:false,
     queryKey: ["categoryitems", catname],
     queryFn: () =>
       fetch(`${Url}/${en}/filteritems/${catname}`).then((res) => res.json()),

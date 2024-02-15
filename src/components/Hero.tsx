@@ -71,6 +71,8 @@ const MemoizedItem = React.memo(
 const Hero = () => {
   const navigate = useNavigate();
   const { isPending, error, data } = useQuery<ItemSet[]>({
+    refetchOnMount:false,
+    refetchOnWindowFocus:false,
     queryKey: ["focusdata"],
     queryFn: () => fetch(`${Url}/${en}/focus`).then((res) => res.json()),
   });

@@ -4,6 +4,8 @@ import { AdData, videoProps } from "../types";
 
 const AdCampain = ({ ishome }: videoProps) => {
   const { isFetching, error, data } = useQuery<AdData | undefined>({
+    refetchOnMount:false,
+    refetchOnWindowFocus:false,
     queryKey: ["vdad"],
     queryFn: () => fetch(`${Url}/${en}/ads`).then((res) => res.json()),
   });

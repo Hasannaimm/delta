@@ -5,6 +5,8 @@ import { ItemHome } from "../types";
 
 const Star = () => {
   const { isFetching, error, data } = useQuery<ItemHome[]>({
+    refetchOnMount:false,
+    refetchOnWindowFocus:false,
     queryKey: ["homeitems"],
     queryFn: () => fetch(`${Url}/${en}/homeitems`).then((res) => res.json()),
   });

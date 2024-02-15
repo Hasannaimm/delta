@@ -16,6 +16,8 @@ type CarouselProps = {
 
 const MainCarousel = () => {
   const { isPending, error, data } = useQuery<CarouselProps[]>({
+    refetchOnMount:false,
+    refetchOnWindowFocus:false,
     queryKey: ["carousel"],
     queryFn: () => fetch(`${Url}/${en}/headers`).then((res) => res.json()),
   });

@@ -18,7 +18,7 @@ const Header = () => {
         </ul>
 
         <div>
-          <Link to={"/"}>LOGO</Link>
+          <Link to={"/"} className="uppercase  w7">Deltaagro</Link>
         </div>
         <div className={`${flexing} gap-x-10`}>
           <div className="p-1 flex flex-col  gap-y-2">
