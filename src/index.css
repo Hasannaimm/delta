@@ -137,19 +137,46 @@
 }
 
 .hover-div::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(255, 255, 255, 0); /* Initial transparent white background */
-  transition: background 0.8s ease; /* Add transition for smooth effect */
+  background: rgba(255, 255, 255, 0); 
+  transition: background 0.8s ease; 
 }
 
 .hover-div:hover::before {
-  background: rgba(255, 255, 255, 0.5); /* White background with 50% opacity on hover */
+  background: rgba(
+    255,
+    255,
+    255,
+    0.5
+  ); 
 }
 
 .hover-div:hover p {
-  color: black; }
+  color: black;
+}
+
+/* MainCarousel.css */
+
+.custom-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: #056df5 4px; 
+
+  color: white; 
+  cursor: pointer;
+  font-size: 1.5rem; 
+}
+
+.custom-arrow-left {
+  left: 15px; 
+}
+
+.custom-arrow-right {
+  right: 15px;
+}

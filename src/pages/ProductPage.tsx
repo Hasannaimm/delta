@@ -66,7 +66,9 @@ const ProductPage = () => {
         </article>
       </section>
 
-      <article className="flex justify-center items-center mt-20">
+
+      <article className="flex flex-col justify-center items-center mt-20">
+      <h1 className="m-7 text-[2rem]  w5">Favorite Products</h1>
         <RandomProductList items={data?.items} />
       </article>
     </>
@@ -83,13 +85,15 @@ const RandomProductList = ({ items }: { items?: Item[] }) => {
   const selectedItems = shuffledItems.slice(0, 4);
 
   return (
-    <div className="flex flex-wrap gap-x-6 gap-y-8">
+    <div className="flex flex-wrap justify-center items-center gap-x-6 gap-y-8">
       {selectedItems.map((item, index) => (
         <ProductCard
           key={index}
           image={`${Url_img}/${item.img_url}`}
           name={item.name}
           sub={item.description}
+          catid={item?.category_id}
+          id={item?.id}
         />
       ))}
     </div>

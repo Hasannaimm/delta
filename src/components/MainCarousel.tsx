@@ -1,11 +1,12 @@
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import Button from "./Button";
 import { Url, Url_img, en } from "../hooks";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import Category from "./SubCategory";
-
+import { GrPrevious } from "react-icons/gr";
+import { GrNext } from "react-icons/gr";
 type CarouselProps = {
   id: number;
   text: string;
@@ -38,12 +39,36 @@ const MainCarousel = () => {
         infiniteLoop
         className=""
         showStatus={false}
-        showArrows={false}
+      
         showIndicators={false}
         stopOnHover
         showThumbs={false}
         interval={3000}
         swipeable={false}
+        renderArrowPrev={(onClickHandler, hasPrev, label) =>
+          hasPrev && (
+            <button
+              type="button"
+              onClick={onClickHandler}
+              title={label}
+              className="custom-arrow custom-arrow-left z-10  "
+            >
+              <span className="arrow-left"><GrPrevious  className="text-[#056df5] text-[2.5rem]"/></span>
+            </button>
+          )
+        }
+        renderArrowNext={(onClickHandler, hasNext, label) =>
+          hasNext && (
+            <button
+              type="button"
+              onClick={onClickHandler}
+              title={label}
+              className="custom-arrow custom-arrow-right z-10"
+            >
+              <span className="arrow-right"><GrNext  className="text-[#056df5] text-[2.5rem]"/></span>
+            </button>
+          )
+        }
       >
         {data.map((item, index) => {
           return (
@@ -53,9 +78,11 @@ const MainCarousel = () => {
                 src={`${Url_img}/${item?.img_url}`}
                 className="h-[500px] "
               />
-              <Button classes="absolute bottom-10 transfom left-[50%]   ">
-                <Link to={"/1/4"}>Discover More</Link>
-              </Button>
+              {item?.linkk !== " " ? (
+                <Button classes="absolute bottom-10 transfom left-[50%]   ">
+                  <Link to={item?.linkk}>Discover More</Link>
+                </Button>
+              ) : null}
             </div>
           );
         })}

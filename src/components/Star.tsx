@@ -1,33 +1,46 @@
+import { useQuery } from "@tanstack/react-query";
 import ProductCard from "./ProductCard";
+import { Url, Url_img, en } from "../hooks";
+import { ItemHome } from "../types";
 
 const Star = () => {
+  const { isFetching, error, data } = useQuery<ItemHome[]>({
+    queryKey: ["homeitems"],
+    queryFn: () => fetch(`${Url}/${en}/homeitems`).then((res) => res.json()),
+  });
+
+  if (isFetching) {
+    return (
+      <div className="w-full flex justify-center my-9">
+        <div className="loader flex justify-center items-center h-screen">
+          <span className="loader-text">loading</span>
+          <span className="load"></span>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="flex justify-center items-center ">Network error</div>
+    );
+  }
+
   return (
     <section className={`flex  flex-col  justify-center items-center mt-10 `}>
-      <h1 className="m-5 text-[2rem]  w5">Our Star Products</h1>
-      <div className="flex justify-center flex-wrap gap-x-7">
-
-      <ProductCard
-        image="https://images.unsplash.com/photo-1607006344380-b6775a0824a7?q=80&w=1941&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        name="Miss"
-        sub="lotion"
-      />
-      <ProductCard
-        image="https://images.unsplash.com/photo-1607006344380-b6775a0824a7?q=80&w=1941&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        name="Miss"
-        sub="lotion"
-      />
-      <ProductCard
-        image="https://images.unsplash.com/photo-1607006344380-b6775a0824a7?q=80&w=1941&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        name="Miss"
-        sub="lotion"
-      />
-      <ProductCard
-        image="https://images.unsplash.com/photo-1607006344380-b6775a0824a7?q=80&w=1941&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        name="Miss"
-        sub="lotion"
-      />
+      <h1 className="m-5 text-[2rem]  w5">Favorite Products</h1>
+      <div className="flex justify-center flex-wrap gap-10">
+        {data?.map((item) => (
+          <ProductCard
+            image={`${Url_img}/${item?.img_url}`}
+            name={item?.name}
+            sub={item?.category?.name}
+            key={item?.id}
+            catid={item?.category_id}
+            id={item?.id}
+          />
+        ))}
       </div>
-     
     </section>
   );
 };
