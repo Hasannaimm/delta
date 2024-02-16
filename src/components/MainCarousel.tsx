@@ -43,9 +43,9 @@ const MainCarousel = () => {
         showStatus={false}
         showIndicators={false}
         stopOnHover
+    swipeable={false}
         showThumbs={false}
         interval={3000}
-        swipeable={false}
         renderArrowPrev={(onClickHandler, hasPrev, label) =>
           hasPrev && (
             <button
@@ -66,7 +66,7 @@ const MainCarousel = () => {
               type="button"
               onClick={onClickHandler}
               title={label}
-              className="custom-arrow custom-arrow-right z-10"
+              className="custom-arrow custom-arrow-right z-10 "
             >
               <span className="arrow-right">
                 <GrNext className="text-[#334774] text-[2.5rem]" />
@@ -77,11 +77,11 @@ const MainCarousel = () => {
       >
         {data.map((item, index) => {
           return (
-            <div key={index} className="relative">
+            <div key={index} className="relative ">
               <img
                 loading="lazy"
                 src={`${Url_img}/${item?.img_url}`}
-                className="h-[500px] "
+                className="h-[500px] max-sm:h-[300px] max-sm:object-cover"
               />
               {item?.linkk !== " " ? (
                 <Button classes="absolute bottom-10 transfom left-[50%]   ">

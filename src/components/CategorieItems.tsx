@@ -11,7 +11,7 @@ const CategorieItems = ({ id, url, name }: CategoryItems) => {
   return (
     <>
       <Link to={String(id)}>
-        <div className="m-3 ">
+        <div className="m-3 max-md:m-0 ">
           <div
             key={id}
             style={{

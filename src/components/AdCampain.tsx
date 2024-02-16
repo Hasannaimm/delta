@@ -37,7 +37,7 @@ const AdCampain = ({ ishome }: videoProps) => {
               : `${Url_img}/${data?.category_ad?.url} `
           }
           controls
-          className="w-[300px] h-[300px] max-w-md mx-auto shadow-lg rounded-lg object-cover"
+          className="max-w-[300px] md:w-[300px] h-[300px]  mx-auto shadow-lg rounded-lg object-cover"
         ></video>
       )}
     </section>

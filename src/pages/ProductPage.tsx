@@ -48,16 +48,16 @@ const ProductPage = () => {
         imageurl={`${Url_img}/${data?.category?.img_url}`}
       />
       <Category />
-      <section className="flex justify-center items-center gap-x-16 mt-32">
+      <section className="flex justify-center items-center gap-x-16 mt-32 max-md:flex-col">
         <div>
           <img
             src={`${Url_img}/${selectedItem?.img_url}`}
             alt={selectedItem?.name}
-            className="h-[400px] w-[400px]"
+            className="h-[400px] w-[400px] p-1"
           />
         </div>
 
-        <article className="w-[400px]">
+        <article className=" max-md:max-w-[300px] w-[400px] space-y-1">
           <ArticleDescription
             name={selectedItem?.name}
             subname={selectedItem?.description}
@@ -68,8 +68,10 @@ const ProductPage = () => {
         </article>
       </section>
 
-      <article className="flex flex-col justify-center items-center mt-20">
-        <h1 className="m-7 text-[2rem]  w5">Related Products</h1>
+      <article className="flex flex-col justify-center items-center mt-20 max-md:mt-2">
+        <h1 className="m-7 text-[2rem]  w5 max-md:text-[1.7rem] ">
+          Related Products
+        </h1>
         <RandomProductList items={data?.items} />
       </article>
     </>

@@ -24,8 +24,8 @@ const ArticleDescription = ({
 
   return (
     <>
-      <div className="flex flex-col gap-y-8">
-        <div>
+      <div className="flex flex-col gap-y-8 space-y-1">
+        <div className="mt-4">
           <h1 className="w7">{name}</h1>
           <h3>{subname} </h3>
         </div>

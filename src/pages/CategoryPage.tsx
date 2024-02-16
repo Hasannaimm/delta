@@ -37,6 +37,7 @@ const CategoryPage = () => {
   return (
     <>
       <CategoriesHero
+      isabout={false}
         name={data?.category?.name}
         imageurl={`${Url_img}/${data?.category?.img_url}`}
       />

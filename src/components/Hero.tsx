@@ -62,7 +62,7 @@ const Item = ({
   const isMaxMd = useMediaQuery("(max-width: 768px)");
 
   // Adjust the image width calculation for better responsiveness
-  const imageWidth = isMaxMd ? "100%" : "50%"; // You can adjust this value based on your design
+  const imageWidth = isMaxMd ? "97%" : "50%"; // You can adjust this value based on your design
 
   return (
     <div
@@ -115,7 +115,7 @@ const Hero = () => {
       <div style={{ maxWidth: '1200px', margin: "auto" }} className="">
         {data && data.length > 0 ? (
           data.map((itemSet, setIndex) => (
-            <div key={setIndex} className="flex max-md:flex-col">
+            <div key={setIndex} className="flex max-md:flex-col justify-center items-center">
               {itemSet?.items?.map((item) => (
                 <Item
                   key={item.id}
