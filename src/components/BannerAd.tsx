@@ -4,11 +4,10 @@ import { AdData } from "../types";
 
 const BannerAd = () => {
   const { isFetching, error, data } = useQuery<AdData>({
-    refetchOnMount:false,
-    refetchOnWindowFocus:false,
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
     queryKey: ["bad"],
     queryFn: () => fetch(`${Url}/${en}/ads`).then((res) => res.json()),
-   
   });
 
   if (isFetching) {
@@ -23,7 +22,9 @@ const BannerAd = () => {
   }
 
   if (error) {
-    return <div className="flex justify-center items-center ">Network error</div>;
+    return (
+      <div className="flex justify-center items-center ">Network error</div>
+    );
   }
 
   return (

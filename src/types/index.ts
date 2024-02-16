@@ -1,9 +1,9 @@
 export type ProductCardType = {
-  image: string |undefined;
+  image: string | undefined;
   name: string | undefined;
-  sub: string |undefined;
-  id:number | undefined;
-  catid:number | undefined;
+  sub: string | undefined;
+  id: number | undefined;
+  catid: number | undefined;
 };
 
 export type Sub = {
@@ -32,9 +32,24 @@ export type Item = {
   weight: string;
 };
 
+export type RandomProp = {
+  random: Item[];
+};
+
+export type ProductProps = {
+  category?: Category; // Make it optional by adding "?"
+  item: Item;
+  random: RandomProp[];
+};
+
 export type CategoryItems = {
-  category: Category;
-  items: Item[];
+  category: Category | undefined;
+  items: Item[] ;
+  current_page: number | undefined;
+  last_page: number | undefined;
+  total: number | undefined;
+  from: number | undefined;
+  to: number |undefined;
 };
 
 export type videoProps = {
@@ -60,17 +75,14 @@ export interface AdData {
   category_ad: Ad | undefined;
 }
 
-
-
-
 interface CategoryHome {
   id: number;
   lang_id: number;
   name: string;
   img_url: string;
   status: number;
-  created_at: string; // You might want to use a more specific type for date/time
-  updated_at: string; // You might want to use a more specific type for date/time
+  created_at: string;
+  updated_at: string;
 }
 
 export interface ItemHome {
@@ -81,10 +93,9 @@ export interface ItemHome {
   category: CategoryHome;
 }
 
-
-export interface aboutUsProps { 
-  id:number  ; 
-  title:string ; 
+export interface aboutUsProps {
+  id: number;
+  title: string;
   description?: string | TrustedHTML | undefined;
-  img_url:string ;
+  img_url: string;
 }

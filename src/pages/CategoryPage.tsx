@@ -1,23 +1,31 @@
+import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import AdCampain from "../components/AdCampain";
 import CategoriesHero from "../components/CategoriesHero";
 import { Url, Url_img, en } from "../hooks";
 import { CategoryItems } from "../types";
-import { flexing } from "../utils";
 import { useParams } from "react-router-dom";
 import Category from "../components/SubCategory";
-import CategorieItems from "../components/CategorieItems";
-
+import CategoryPagination from "../components/CategoryPagination";
+import { GrPrevious } from "react-icons/gr";
+import { GrNext } from "react-icons/gr";
 const CategoryPage = () => {
-  let { catname } = useParams();
+  const { catname } = useParams();
+  const [currentPage, setCurrentPage] = useState(1);
 
   const { isFetching, error, data } = useQuery<CategoryItems>({
     refetchOnMount: false,
     refetchOnWindowFocus: false,
-    queryKey: ["categoryitems", catname],
+    queryKey: ["categoryitems", catname, currentPage],
     queryFn: () =>
-      fetch(`${Url}/${en}/filteritems/${catname}`).then((res) => res.json()),
+      fetch(`${Url}/${en}/filteritems/${catname}?page=${currentPage}`).then(
+        (res) => res.json()
+      ),
   });
+
+  const handlePageChange = (newPage: number) => {
+    setCurrentPage(newPage);
+  };
 
   if (isFetching) {
     return (
@@ -37,28 +45,52 @@ const CategoryPage = () => {
   return (
     <>
       <CategoriesHero
-      isabout={false}
+        isabout={false}
         name={data?.category?.name}
         imageurl={`${Url_img}/${data?.category?.img_url}`}
       />
       <Category />
       <main className="w-full flex flex-col items-center ">
-        <section className="flex flex-wrap justify-center items-center w-[70%] mt-10 ">
-          {data && data.items.length > 0 ? (
-            data?.items?.map((itemSet, setIndex) => (
-              <CategorieItems
-                id={itemSet.id}
-                name={itemSet.name}
-                key={setIndex}
-                url={itemSet.img_url}
-              />
-            ))
-          ) : (
-            <div className={`${flexing}`}>
-              <p className="w7">No data available</p>
-            </div>
-          )}
-        </section>
+        <CategoryPagination
+          currentPage={currentPage}
+          totalPages={data?.last_page}
+          onPageChange={handlePageChange}
+        />
+
+        <div className=" flex my-2 justify-center items-center ">
+          <div>
+            <button
+              id="previos"
+              onClick={() => handlePageChange(currentPage - 1)}
+              disabled={currentPage === 1}
+              className={`bg-gray-300 p-2 rounded-full    ${
+                currentPage === 1 ? "hidden" : " "
+              }   `}
+            >
+              <GrPrevious className="text-[#334774] text-[1.8rem] " />
+            </button>
+          </div>
+          <div className="bg-gray-300  rounded-full m-10 p-4">
+            <h1 className="w7 text-[#334774] ">{data?.current_page} </h1>
+          </div>
+          <div>
+            <button
+              id="next"
+              onClick={() => handlePageChange(currentPage + 1)}
+              disabled={currentPage === data?.last_page}
+              className={`bg-gray-300 p-2 rounded-full    ${
+                currentPage === data?.last_page ? "hidden" : " "
+              }   `}
+            >
+              <GrNext className="text-[#334774] text-[1.8rem] " />
+            </button>
+          </div>
+        </div>
+        <div>
+          <span className="text-[#334774]  w5 text-sm ">
+            Showing from {data?.from} to {data?.to} of {data?.total}
+          </span>
+        </div>
       </main>
 
       <AdCampain ishome={false} />

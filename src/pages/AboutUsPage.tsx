@@ -45,7 +45,7 @@ const AboutUsPage = () => {
       <Category/>
 
       <section className="flex flex-col justify-center items-center mt-28">
-        <div className="text-center space-y-4 w-[90%]">
+        <div className="space-y-4 w-[90%]">
           <h1 className="text-[#334774]  w7 text-[2.3rem] ">{data?.title}</h1>
           <p dangerouslySetInnerHTML={{ __html: sanitizedDescription }} />
         </div>

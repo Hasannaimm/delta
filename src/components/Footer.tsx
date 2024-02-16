@@ -15,6 +15,7 @@ import { flexing } from "../utils";
 import { AiFillInstagram } from "react-icons/ai";
 import { FaFacebookF, FaWhatsapp } from "react-icons/fa";
 import { Url, en } from "../hooks";
+import { logo } from "../assets";
 
 const Footer = () => {
   const { isPending, error, data } = useQuery<ContactInfo>({
@@ -44,7 +45,13 @@ const Footer = () => {
       className={`${flexing} mt-10 bg-[#2A2A2A] px-6 text-white Rubik w4 justify-between p-7 max-md:flex-col`}
     >
       <div>
-        <h1>LOGO</h1>
+      <img
+              src={logo}
+              height={100}
+              width={100}
+              className="max-md:h-[60px] max-md:w-[60px] "
+              alt="logo"
+            />
         <p className="text-[13px] text-gray-200 w4 w-[400px] max-md:max-w-[310px] ">{data?.text}</p>
       </div>
 

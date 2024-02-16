@@ -6,8 +6,8 @@ import { Url, en } from "../hooks";
 
 const Category = () => {
   const { isPending, error, data } = useQuery<CategoryProps[]>({
-    refetchOnMount:false  , 
-    refetchOnWindowFocus:false,
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
     queryKey: ["repoData"],
     queryFn: () => fetch(`${Url}/${en}/categories`).then((res) => res.json()),
   });
@@ -28,9 +28,9 @@ const Category = () => {
       className={`${flexing} gap-8 text-white Rubik py-1 w4 text-sm relative max-md:hidden`}
       style={{ background: MainColor }}
     >
-      <Link className="hover:text-gray-200 p-2 text-md uppercase" to="/">
+      <a className="hover:text-gray-200 p-2 text-md uppercase" href="/">
         Home
-      </Link>
+      </a>
       {data?.map((item, index) => (
         <a
           key={index}
