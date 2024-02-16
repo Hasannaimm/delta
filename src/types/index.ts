@@ -85,6 +85,6 @@ export interface ItemHome {
 export interface aboutUsProps { 
   id:number  ; 
   title:string ; 
-  description:string ;
+  description?: string | TrustedHTML | undefined;
   img_url:string ;
 }
