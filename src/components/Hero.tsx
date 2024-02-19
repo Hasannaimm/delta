@@ -33,8 +33,7 @@ const useMediaQuery = (query: string) => {
 
   return matches;
 };
-
-const Image = ({ src, alt, isMaxMd }: { src: string; alt: string; isMaxMd: boolean }) => (
+const Image = ({ src, alt, isMaxMd, onLoad }: { src: string; alt: string; isMaxMd: boolean; onLoad: () => void }) => (
   <img
     loading="lazy"
     src={`${Url_img}/${src}`}
@@ -45,6 +44,7 @@ const Image = ({ src, alt, isMaxMd }: { src: string; alt: string; isMaxMd: boole
       objectFit: "cover",
     }}
     className="image "
+    onLoad={onLoad}
   />
 );
 
@@ -55,6 +55,12 @@ const Item = ({
   item: Item;
   onItemClick: (itemId: number) => void;
 }) => {
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
+
+  const handleImageLoad = useCallback(() => {
+    setIsImageLoaded(true);
+  }, []);
+
   const handleClick = useCallback(() => {
     onItemClick(item.id);
   }, [item.id, onItemClick]);
@@ -62,7 +68,7 @@ const Item = ({
   const isMaxMd = useMediaQuery("(max-width: 768px)");
 
   // Adjust the image width calculation for better responsiveness
-  const imageWidth = isMaxMd ? "97%" : "50%"; // You can adjust this value based on your design
+  const imageWidth = isMaxMd ? "97%" : "97%";
 
   return (
     <div
@@ -77,13 +83,16 @@ const Item = ({
       className="cursor-pointer relative hover-div"
       onClick={handleClick}
     >
-      <Image src={item.img_url} alt={item.name} isMaxMd={isMaxMd} />
-      <p className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white uppercase transition text-lg w4  hover:text-black">
-        {item.name}
-      </p>
+      <Image src={item.img_url} alt={item.name} isMaxMd={isMaxMd} onLoad={handleImageLoad} />
+      {isImageLoaded && (
+        <p className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white uppercase transition text-lg w4  hover:text-black">
+          {item.name}
+        </p>
+      )}
     </div>
   );
 };
+
 
 const Hero = () => {
   const navigate = useNavigate();

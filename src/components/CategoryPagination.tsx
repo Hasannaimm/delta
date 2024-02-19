@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Url, en } from "../hooks";
 import { CategoryItems } from "../types";
@@ -13,9 +13,9 @@ interface CategoryPaginationProps {
 }
 
 const CategoryPagination: React.FC<CategoryPaginationProps> = ({
-  onPageChange,
+
   currentPage,
-  totalPages,
+
 }) => {
   let { catname } = useParams();
 

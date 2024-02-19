@@ -1,6 +1,5 @@
 import { MainColor, flexing } from "../utils";
 import { useQuery } from "@tanstack/react-query";
-import { Link } from "react-router-dom";
 import { CategoryProps } from "../types";
 import { Url, en } from "../hooks";
 

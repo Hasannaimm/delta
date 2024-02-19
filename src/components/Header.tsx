@@ -48,9 +48,7 @@ const Header = () => {
         </div>
 
         <ul className={`${flexing} text-[13px] gap-x-4 max-md:hidden `}>
-          <li>
-            <a href="">ContactUs</a>
-          </li>
+        
           <li>
             <a href="/about-us">AboutUS</a>
           </li>
@@ -85,9 +83,13 @@ const Header = () => {
 
         {isMenuOpen && (
           <div
-            className={`menu-container absolute top-[100%] left-0 w-[80%] h-svh bg-white z-50 flex flex-col gap-y-20 px-10 md:hidden transition-opacity ease-in-out duration-300 `}
-            onClick={() => setIsMenuOpen(false)}
+            className={` absolute top-[100%] left-0 w-[80%] h-svh bg-white z-50 flex flex-col gap-y-20 px-10 md:hidden transition-opacity ease-in-out duration-300 `}
+            // onClick={() => setIsMenuOpen(false)}
           >
+            <div className="">
+            <Search />
+            </div>
+            
             <div className="menu-items flex flex-col opacity-100 my-10">
               {data?.map((item, index) => (
                 <a
@@ -102,9 +104,7 @@ const Header = () => {
 
             {/* Your menu content goes here */}
             <ul className={`${flexing} text-[13px] gap-x-4 flex-col gap-3`}>
-              <li>
-                <a href="">ContactUs</a>
-              </li>
+           
               <li>
                 <a href="/about-us">AboutUS</a>
               </li>

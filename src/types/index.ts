@@ -30,16 +30,24 @@ export type Item = {
   description: string;
   usagee: string;
   weight: string;
+  instruction: string |undefined;
 };
 
 export type RandomProp = {
-  random: Item[];
+  id: number;
+  name: string | undefined;
+  img_url: string;
+  category_id: number;
+  description: string;
+  usagee: string;
+  weight: string;
+  instruction: string |undefined;
 };
 
 export type ProductProps = {
   category?: Category; // Make it optional by adding "?"
   item: Item;
-  random: RandomProp[];
+  random: Item[] | RandomProp[];
 };
 
 export type CategoryItems = {

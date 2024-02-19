@@ -7,9 +7,6 @@ import ProductCard from "../components/ProductCard";
 import CategoriesHero from "../components/CategoriesHero";
 import Category from "../components/SubCategory";
 
-
-
-
 const ProductPage = () => {
   let { productid } = useParams();
 
@@ -20,7 +17,6 @@ const ProductPage = () => {
     queryFn: () =>
       fetch(`${Url}/${en}/getitem/${productid}`).then((res) => res.json()),
   });
-
 
   if (isFetching) {
     return (
@@ -37,6 +33,7 @@ const ProductPage = () => {
     return <div>An error has occurred: {error.message}</div>;
   }
 
+  console.log(data);
 
   return (
     <>
@@ -60,7 +57,7 @@ const ProductPage = () => {
             name={data?.item?.name}
             subname={data?.item?.description}
             benefits={data?.item?.usagee}
-            instrunctions="Apply a small amount to the face morning and/or evening to thoroughly cleansed skin (face, neck, and neckline). Just a few drops are enough. Follow up the skincare by applying your lotion or cream. You may also mix the oil with the cream or the lotion."
+            instrunctions={data?.item?.instruction}
             sizes={data?.item?.weight}
           />
         </article>
@@ -70,28 +67,29 @@ const ProductPage = () => {
         <h1 className="m-7 text-[2rem]  w5 max-md:text-[1.7rem] ">
           Related Products
         </h1>
-        <RandomProductList items={data?.random } />
+        <RandomProductList items={data?.random} />
       </article>
     </>
   );
 };
 
-const RandomProductList = ({ items }: { items?: RandomProp["random"] | Item[] }) => {
+const RandomProductList = ({ items }: { items?: RandomProp[] | Item[] }) => {
   return (
     <div className="flex flex-wrap justify-center items-center gap-x-6 gap-y-8">
-      {items?.map((item, index) => (
-        <ProductCard
-          key={index}
-          image={`${Url_img}/${item.img_url}`}
-          name={item.name}
-          sub={item.description}
-          catid={item.category_id}
-          id={item.id}
-        />
-      ))}
+      {Array.isArray(items) &&
+        items.map((item, index) => (
+          <ProductCard
+            key={index}
+            image={`${Url_img}/${item.img_url}`}
+            name={item.name || ""}
+            sub={item.description}
+            catid={item.category_id}
+            id={item.id}
+          />
+        ))}
+      {!Array.isArray(items) && <p>No related products available</p>}
     </div>
   );
 };
-
 
 export default ProductPage;
