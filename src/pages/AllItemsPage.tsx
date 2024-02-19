@@ -8,7 +8,7 @@ import CategoryPagination from "../components/CategoryPagination";
 import { GrNext, GrPrevious } from "react-icons/gr";
 import AdCampain from "../components/AdCampain";
 
-const SearchPage = () => {
+const AllItemsPage = () => {
   const { catname } = useParams();
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -92,7 +92,7 @@ const SearchPage = () => {
 
       <AdCampain ishome={false} />
     </>
-  )
-}
+  );
+};
 
-export default SearchPage
+export default AllItemsPage;
