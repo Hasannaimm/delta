@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { flexing } from "../utils";
+import { useTranslation } from "react-i18next";
 
 type ProductProps = {
   name: string | undefined;

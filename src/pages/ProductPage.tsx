@@ -6,8 +6,10 @@ import { Url, Url_img, en } from "../hooks";
 import ProductCard from "../components/ProductCard";
 import CategoriesHero from "../components/CategoriesHero";
 import Category from "../components/SubCategory";
+import { useTranslation } from "react-i18next";
 
 const ProductPage = () => {
+  const { t} = useTranslation()
   let { productid } = useParams();
 
   const { isFetching, error, data } = useQuery<ProductProps>({
@@ -20,12 +22,7 @@ const ProductPage = () => {
 
   if (isFetching) {
     return (
-      <div className="w-full flex justify-center my-9">
-        <div className="loader flex justify-center items-center h-screen">
-          <span className="loader-text">loading</span>
-          <span className="load"></span>
-        </div>
-      </div>
+      null
     );
   }
 
@@ -65,7 +62,7 @@ const ProductPage = () => {
 
       <article className="flex flex-col justify-center items-center mt-20 max-md:mt-2">
         <h1 className="m-7 text-[2rem]  w5 max-md:text-[1.7rem] ">
-          Related Products
+        {t("related")}
         </h1>
         <RandomProductList items={data?.random} />
       </article>

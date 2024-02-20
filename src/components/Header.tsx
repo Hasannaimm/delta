@@ -10,6 +10,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Url, en } from "../hooks";
 import cookies from "js-cookie";
 import { useTranslation } from "react-i18next";
+import Loader from "./Loader";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -55,12 +56,7 @@ const Header = () => {
 
   if (isPending)
     return (
-      <div className="w-full flex justify-center my-9">
-        <div className="loader flex justify-center items-center h-screen">
-          <span className="loader-text">loading</span>
-          <span className="load"></span>
-        </div>
-      </div>
+     null
     );
   if (error) return "An error has occurred: " + error?.message;
 

@@ -16,8 +16,10 @@ import { AiFillInstagram } from "react-icons/ai";
 import { FaFacebookF, FaWhatsapp } from "react-icons/fa";
 import { Url, en } from "../hooks";
 import { logo } from "../assets";
+import { useTranslation } from "react-i18next";
 
 const Footer = () => {
+  const {t} =useTranslation()
   const { isPending, error, data } = useQuery<ContactInfo>({
     refetchOnMount:false , 
     refetchOnWindowFocus:false,
@@ -27,12 +29,7 @@ const Footer = () => {
 
   if (isPending) {
     return (
-      <div className="w-full flex justify-center my-9">
-        <div className="loader flex justify-center items-center h-screen">
-          <span className="loader-text">loading</span>
-          <span className="load"></span>
-        </div>
-      </div>
+     null
     );
   }
 
@@ -56,7 +53,7 @@ const Footer = () => {
       </div>
 
       <div className="text-center flex flex-col gap-y-3 ">
-        <h3>-Follow us-</h3>
+        <h3>-{t("followus")}-</h3>
         <ul className={`${flexing} gap-x-4`}>
           {data?.whatsapp && (
             <li>

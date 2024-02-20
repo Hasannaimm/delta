@@ -16,7 +16,7 @@ type CarouselProps = {
 };
 
 const MainCarousel = () => {
-  const {t}= useTranslation()
+  const { t } = useTranslation();
   const { isPending, error, data } = useQuery<CarouselProps[]>({
     refetchOnMount: false,
     refetchOnWindowFocus: false,
@@ -24,15 +24,7 @@ const MainCarousel = () => {
     queryFn: () => fetch(`${Url}/${en}/headers`).then((res) => res.json()),
   });
 
-  if (isPending)
-    return (
-      <div className="w-full flex justify-center my-9">
-        <div className="loader flex justify-center items-center h-screen">
-          <span className="loader-text">loading</span>
-          <span className="load"></span>
-        </div>
-      </div>
-    );
+  if (isPending) return null;
   if (error) return "An error has occurred: " + error.message;
 
   return (
@@ -45,7 +37,7 @@ const MainCarousel = () => {
         showStatus={false}
         showIndicators={false}
         stopOnHover
-    swipeable={false}
+        swipeable={false}
         showThumbs={false}
         interval={3000}
         renderArrowPrev={(onClickHandler, hasPrev, label) =>

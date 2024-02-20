@@ -17,12 +17,7 @@ const AboutUsPage = () => {
 
   if (isFetching) {
     return (
-      <div className="w-full flex justify-center my-9">
-        <div className="loader flex justify-center items-center h-screen">
-          <span className="loader-text">loading</span>
-          <span className="load"></span>
-        </div>
-      </div>
+    null
     );
   }
 
