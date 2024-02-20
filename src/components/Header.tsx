@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { flexing } from "../utils";
+import { MainColor, flexing } from "../utils";
 import Search from "./Search";
 import { logo } from "../assets";
 import { BsList } from "react-icons/bs";
@@ -8,12 +8,42 @@ import { IoCloseSharp } from "react-icons/io5";
 import { CategoryProps } from "../types";
 import { useQuery } from "@tanstack/react-query";
 import { Url, en } from "../hooks";
+import cookies from "js-cookie";
+import { useTranslation } from "react-i18next";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const { t, i18n } = useTranslation();
+
+  // const languages = [
+  //   {
+  //     code: "fr",
+  //     name: "Français",
+  //     country_code: "fr",
+  //   },
+  //   {
+  //     code: "en",
+  //     name: "English",
+  //     country_code: "gb",
+  //   },
+  // ];
+
+  const currentLanguageCode = cookies.get("i18next") || "en";
+  //const currentLanguage = languages.find((l) => l.code === currentLanguageCode);
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const setLanguage = (newLang: string) => {
+    i18n.changeLanguage(newLang);
+    cookies.set("i18next", newLang);
+  };
+
+  const handleLanguageChange = () => {
+    const newLang = currentLanguageCode === "fr" ? "en" : "fr";
+    setLanguage(newLang);
   };
 
   const { isPending, error, data } = useQuery<CategoryProps[]>({
@@ -34,6 +64,8 @@ const Header = () => {
     );
   if (error) return "An error has occurred: " + error?.message;
 
+  console.log(currentLanguageCode);
+
   return (
     <>
       <section
@@ -48,9 +80,8 @@ const Header = () => {
         </div>
 
         <ul className={`${flexing} text-[13px] gap-x-4 max-md:hidden `}>
-        
           <li>
-            <a href="/about-us">AboutUS</a>
+            <a href="/about-us">{t("about")}</a>
           </li>
         </ul>
 
@@ -71,11 +102,18 @@ const Header = () => {
             />
           </Link>
         </div>
+
         <div className={`${flexing} gap-x-10 max-md:hidden`}>
           <div className="p-1 flex flex-col gap-y-2">
-            <div className={`flex justify-end mr-2`}>
-              <h1>Eng</h1>
-            </div>
+            <button className={`flex justify-end mr-2`}>
+              <h1
+                style={{ color: MainColor }}
+                className="text-lg w7"
+                onClick={handleLanguageChange}
+              >
+                {t("language")}
+              </h1>
+            </button>
 
             <Search />
           </div>
@@ -84,12 +122,8 @@ const Header = () => {
         {isMenuOpen && (
           <div
             className={` absolute top-[100%] left-0 w-[80%] h-svh bg-white z-50 flex flex-col gap-y-20 px-10 md:hidden transition-opacity ease-in-out duration-300 `}
-            // onClick={() => setIsMenuOpen(false)}
+            onClick={() => setIsMenuOpen(false)}
           >
-            <div className="">
-            <Search />
-            </div>
-            
             <div className="menu-items flex flex-col opacity-100 my-10">
               {data?.map((item, index) => (
                 <a
@@ -104,7 +138,17 @@ const Header = () => {
 
             {/* Your menu content goes here */}
             <ul className={`${flexing} text-[13px] gap-x-4 flex-col gap-3`}>
-           
+              <li>
+                <button className={`flex justify-end mr-2`}>
+                  <h1
+                    style={{ color: MainColor }}
+                    className="text-lg w7"
+                    onClick={handleLanguageChange}
+                  >
+                    {t("language")}
+                  </h1>
+                </button>
+              </li>
               <li>
                 <a href="/about-us">AboutUS</a>
               </li>
@@ -112,6 +156,9 @@ const Header = () => {
           </div>
         )}
       </section>
+      <div className="w-full justify-center items-center p-4 md:hidden">
+        <Search />
+      </div>
     </>
   );
 };

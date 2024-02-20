@@ -7,8 +7,10 @@ import MainCarousel from "../components/MainCarousel";
 import CategoryPagination from "../components/CategoryPagination";
 import { GrNext, GrPrevious } from "react-icons/gr";
 import AdCampain from "../components/AdCampain";
+import { useTranslation } from "react-i18next";
 
 const AllItemsPage = () => {
+  const {t}= useTranslation()
   const { catname } = useParams();
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -41,7 +43,6 @@ const AllItemsPage = () => {
     return <div>An error has occurred: {error.message}</div>;
   }
 
-  console.log(data);
 
   return (
     <>
@@ -85,7 +86,7 @@ const AllItemsPage = () => {
         </div>
         <div>
           <span className="text-[#334774]  w5 text-sm ">
-            Showing from {data?.from} to {data?.to} of {data?.total}
+          {t("showing", { f: data?.from, l: data?.to, t: data?.total })}  
           </span>
         </div>
       </main>

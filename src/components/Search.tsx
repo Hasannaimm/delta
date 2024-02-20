@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { CiSearch } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
 
@@ -17,6 +18,7 @@ const Search = () => {
       handleClick();
     }
   };
+  const { t } = useTranslation()
 
   return (
     <>
@@ -27,7 +29,7 @@ const Search = () => {
             onChange={(e) => setSearch(e.target.value)}
             onKeyDown={handleKeyDown}
             type="text"
-            placeholder="Search products"
+            placeholder={t('Search')}
             className="outline-none px-2"
           />
           <button onClick={handleClick}>

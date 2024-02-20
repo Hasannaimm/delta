@@ -31,16 +31,44 @@ i18next
     supportedLngs: ['en', 'fr'],
     fallbackLng: 'en',
     debug: false,
-    // Options for language detector
+    resources: {
+      en: {
+        translation: {
+          greeting: 'Hello',
+          aboutUs: 'About Us',
+          allProducts: 'All Products',
+          Search:"Search" , 
+          language:"Fr",
+          favorite:"Favorite Products",
+          discover:"Discover More" ,
+          ad:"AD" , 
+          about:"About Us", 
+          showing:"Showing from {{f}} to {{l}} of {{t}}"
+        
+        },
+      },
+      fr: {
+        translation: {
+          greeting: 'Bonjour',
+          aboutUs: 'À Propos de Nous',
+          allProducts: 'Tous les Produits',
+          Search:"recherche",
+          language:"En" ,
+          favorite:"Produits préférés",
+          discover:"Découvrir plus", 
+           ad:"annonce" , 
+           about:"à propos de nous",
+           showing:"Affichage de {{f}} à {{l}} sur {{t}}"
+
+        },
+      },
+    },
     detection: {
-      order: ['path', 'cookie', 'htmlTag'],
+      order: ['cookie', 'htmlTag', 'path'],
       caches: ['cookie'],
     },
-    // react: { useSuspense: false },
-    backend: {
-      loadPath: '/assets/locales/{{lng}}/translation.json',
-    },
-  })
+  });
+
 
 
 

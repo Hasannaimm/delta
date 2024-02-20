@@ -1,8 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import { Url, Url_img, en } from "../hooks";
 import { AdData, videoProps } from "../types";
+import { useTranslation } from "react-i18next";
 
 const AdCampain = ({ ishome }: videoProps) => {
+  const {t} =useTranslation()
   const { isFetching, error, data } = useQuery<AdData | undefined>({
     refetchOnMount:false,
     refetchOnWindowFocus:false,
@@ -27,7 +29,7 @@ const AdCampain = ({ ishome }: videoProps) => {
 
   return (
     <section className=" text-center m-14 p-8 rounded-3xl">
-      <h1 className="text-black text-[2rem] w5 my-3  ">AD</h1>
+      <h1 className="text-black text-[2rem] w5 my-3  ">{t("ad")}</h1>
 
       {data && (
         <video

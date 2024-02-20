@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import Category from "./SubCategory";
 import { GrPrevious } from "react-icons/gr";
 import { GrNext } from "react-icons/gr";
+import { useTranslation } from "react-i18next";
 type CarouselProps = {
   id: number;
   text: string;
@@ -15,6 +16,7 @@ type CarouselProps = {
 };
 
 const MainCarousel = () => {
+  const {t}= useTranslation()
   const { isPending, error, data } = useQuery<CarouselProps[]>({
     refetchOnMount: false,
     refetchOnWindowFocus: false,
@@ -85,7 +87,7 @@ const MainCarousel = () => {
               />
               {item?.linkk !== " " ? (
                 <Button classes="absolute bottom-10 transfom left-[50%]   ">
-                  <Link to={item?.linkk}>Discover More</Link>
+                  <Link to={item?.linkk}>{t("discover")}</Link>
                 </Button>
               ) : null}
             </div>

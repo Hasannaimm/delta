@@ -1,11 +1,11 @@
 import { MainColor, flexing } from "../utils";
 import { useQuery } from "@tanstack/react-query";
 import { CategoryProps } from "../types";
-import { Url, en } from "../hooks";
+import { Url, en, } from "../hooks";
 
 const Category = () => {
   const { isPending, error, data } = useQuery<CategoryProps[]>({
-    refetchOnMount: false,
+
     refetchOnWindowFocus: false,
     queryKey: ["repoData"],
     queryFn: () => fetch(`${Url}/${en}/categories`).then((res) => res.json()),
@@ -22,6 +22,8 @@ const Category = () => {
     );
   if (error) return "An error has occurred: " + error?.message;
 
+ 
+  
   return (
     <section
       className={`${flexing} gap-8 text-white Rubik py-1 w4 text-sm relative max-md:hidden`}

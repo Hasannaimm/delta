@@ -9,9 +9,11 @@ import Category from "../components/SubCategory";
 import CategoryPagination from "../components/CategoryPagination";
 import { GrPrevious } from "react-icons/gr";
 import { GrNext } from "react-icons/gr";
+import { useTranslation } from "react-i18next";
 const CategoryPage = () => {
   const { catname } = useParams();
   const [currentPage, setCurrentPage] = useState(1);
+  const {t}=useTranslation()
 
   const { isFetching, error, data } = useQuery<CategoryItems>({
     refetchOnMount: false,
@@ -88,7 +90,8 @@ const CategoryPage = () => {
         </div>
         <div>
           <span className="text-[#334774]  w5 text-sm ">
-            Showing from {data?.from} to {data?.to} of {data?.total}
+          {t("showing", { f: data?.from, l: data?.to, t: data?.total })}
+
           </span>
         </div>
       </main>
