@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { Url, Url_img, en } from "../hooks";
+import { Url, Url_img, lng } from "../hooks";
 import MainCarousel from "../components/MainCarousel";
 import { GrNext, GrPrevious } from "react-icons/gr";
 import AdCampain from "../components/AdCampain";
 import { flexing } from "../utils";
 import axios from "axios";
+import Loader from "../components/Loader";
+import { useTranslation } from "react-i18next";
 
 // Define TypeScript types
 interface Item {
@@ -29,9 +31,11 @@ const SearchPage: React.FC = () => {
   const { productname } = useParams<{ productname?: string }>();
   const [currentPage, setCurrentPage] = useState<number>(1);
 
+  const { t } = useTranslation(); // Move useTranslation outside the return statement
+
   const mutation = useMutation({
     mutationFn: (searchTerm: string) => {
-      return axios.post(`${Url}/${en}/searchitem`, {
+      return axios.post(`${Url}/${lng}/searchitem`, {
         search: searchTerm,
         page: currentPage,
       });
@@ -54,7 +58,7 @@ const SearchPage: React.FC = () => {
     refetchOnWindowFocus: false,
     queryKey: ["search", productname, currentPage],
     queryFn: () =>
-      fetch(`${Url}/${en}/searchitem`, {
+      fetch(`${Url}/${lng}/searchitem`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -68,15 +72,13 @@ const SearchPage: React.FC = () => {
   };
 
   if (isFetching) {
-    return (
-      null
-    );
+    return <Loader />;
   }
 
   if (error) {
     return <div>An error has occurred: {error.message}</div>;
   }
-  
+
   return (
     <>
       <MainCarousel />
@@ -116,7 +118,7 @@ const SearchPage: React.FC = () => {
             ))
           ) : (
             <div className={`${flexing}`}>
-              <p className="w7">No data available</p>
+              <p className="w7">{t("unavailable")}</p>
             </div>
           )}
         </section>
@@ -152,7 +154,7 @@ const SearchPage: React.FC = () => {
         </div>
 
         <div>
-        <span className={`text-[#334774] w5 text-sm ${!data?.items || data?.items.length === 0 ? "hidden" : ""}`}>
+          <span className={`text-[#334774] w5 text-sm ${!data?.items || data?.items.length === 0 ? "hidden" : ""}`}>
             Showing from {data?.from} to {data?.to} of {data?.total}
           </span>
         </div>
@@ -164,3 +166,4 @@ const SearchPage: React.FC = () => {
 };
 
 export default SearchPage;
+

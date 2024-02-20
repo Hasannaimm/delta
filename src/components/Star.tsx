@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import ProductCard from "./ProductCard";
-import { Url, Url_img, en } from "../hooks";
+import { Url, Url_img, lng } from "../hooks";
 import { ItemHome } from "../types";
 import { useTranslation } from "react-i18next";
 
@@ -10,7 +10,7 @@ const Star = () => {
     refetchOnMount: false,
     refetchOnWindowFocus: false,
     queryKey: ["homeitems"],
-    queryFn: () => fetch(`${Url}/${en}/homeitems`).then((res) => res.json()),
+    queryFn: () => fetch(`${Url}/${lng}/homeitems`).then((res) => res.json()),
   });
 
   if (isFetching) {

@@ -46,6 +46,8 @@ i18next
           showing: "Showing from {{f}} to {{l}} of {{t}}",
           related: "Related Products",
           followus: "Follow Us",
+          unavailable:"Data Not Available" ,
+          home:"Home",
         },
       },
       fr: {
@@ -62,6 +64,8 @@ i18next
           showing: "Affichage de {{f}} à {{l}} sur {{t}}",
           related: "Produits connexes",
           followus: "Suivez-nous",
+          unavailable:"Données non disponibles",
+          home:"maison"
         },
       },
     },

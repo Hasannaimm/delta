@@ -1,31 +1,29 @@
 import { useQuery } from "@tanstack/react-query";
-import { Url, Url_img, en } from "../hooks";
+import { Url, Url_img, lng } from "../hooks";
 import { aboutUsProps } from "../types";
 import CategoriesHero from "../components/CategoriesHero";
 
 //@ts-ignore
 import DOMPurify from "dompurify";
 import Category from "../components/SubCategory";
+import Loader from "../components/Loader";
 
 const AboutUsPage = () => {
   const { isFetching, error, data } = useQuery<aboutUsProps>({
     refetchOnMount: false,
     refetchOnWindowFocus: false,
     queryKey: ["aboutus"],
-    queryFn: () => fetch(`${Url}/${en}/aboutus`).then((res) => res.json()),
+    queryFn: () => fetch(`${Url}/${lng}/aboutus`).then((res) => res.json()),
   });
 
   if (isFetching) {
-    return (
-    null
-    );
+    return <Loader />;
   }
 
   if (error) {
     return <div>An error has occurred: {error.message}</div>;
   }
 
-  console.log(data);
   const sanitizedDescription = data
     ? DOMPurify.sanitize(data.description || "")
     : "";
@@ -37,7 +35,7 @@ const AboutUsPage = () => {
         name={data?.title}
         isabout
       />
-      <Category/>
+      <Category />
 
       <section className="flex flex-col justify-center items-center mt-28">
         <div className="space-y-4 w-[90%]">

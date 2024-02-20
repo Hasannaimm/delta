@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import AdCampain from "../components/AdCampain";
 import CategoriesHero from "../components/CategoriesHero";
-import { Url, Url_img, en } from "../hooks";
+import { Url, Url_img, lng } from "../hooks";
 import { CategoryItems } from "../types";
 import { useParams } from "react-router-dom";
 import Category from "../components/SubCategory";
@@ -10,17 +10,18 @@ import CategoryPagination from "../components/CategoryPagination";
 import { GrPrevious } from "react-icons/gr";
 import { GrNext } from "react-icons/gr";
 import { useTranslation } from "react-i18next";
+import Loader from "../components/Loader";
 const CategoryPage = () => {
   const { catname } = useParams();
   const [currentPage, setCurrentPage] = useState(1);
-  const {t}=useTranslation()
+  const { t } = useTranslation();
 
   const { isFetching, error, data } = useQuery<CategoryItems>({
     refetchOnMount: false,
     refetchOnWindowFocus: false,
     queryKey: ["categoryitems", catname, currentPage],
     queryFn: () =>
-      fetch(`${Url}/${en}/filteritems/${catname}?page=${currentPage}`).then(
+      fetch(`${Url}/${lng}/filteritems/${catname}?page=${currentPage}`).then(
         (res) => res.json()
       ),
   });
@@ -30,9 +31,7 @@ const CategoryPage = () => {
   };
 
   if (isFetching) {
-    return (
-     null
-    );
+    return <Loader />;
   }
 
   if (error) {
@@ -85,8 +84,7 @@ const CategoryPage = () => {
         </div>
         <div>
           <span className="text-[#334774]  w5 text-sm ">
-          {t("showing", { f: data?.from, l: data?.to, t: data?.total })}
-
+            {t("showing", { f: data?.from, l: data?.to, t: data?.total })}
           </span>
         </div>
       </main>

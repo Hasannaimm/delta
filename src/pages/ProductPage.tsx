@@ -2,14 +2,15 @@ import { useParams } from "react-router-dom";
 import ArticleDescription from "../components/ArticleDescription";
 import { useQuery } from "@tanstack/react-query";
 import { Item, ProductProps, RandomProp } from "../types";
-import { Url, Url_img, en } from "../hooks";
+import { Url, Url_img, lng } from "../hooks";
 import ProductCard from "../components/ProductCard";
 import CategoriesHero from "../components/CategoriesHero";
 import Category from "../components/SubCategory";
 import { useTranslation } from "react-i18next";
+import Loader from "../components/Loader";
 
 const ProductPage = () => {
-  const { t} = useTranslation()
+  const { t } = useTranslation();
   let { productid } = useParams();
 
   const { isFetching, error, data } = useQuery<ProductProps>({
@@ -17,20 +18,16 @@ const ProductPage = () => {
     refetchOnWindowFocus: false,
     queryKey: ["items", productid],
     queryFn: () =>
-      fetch(`${Url}/${en}/getitem/${productid}`).then((res) => res.json()),
+      fetch(`${Url}/${lng}/getitem/${productid}`).then((res) => res.json()),
   });
 
   if (isFetching) {
-    return (
-      null
-    );
+    return <Loader />;
   }
 
   if (error) {
     return <div>An error has occurred: {error.message}</div>;
   }
-
-  console.log(data);
 
   return (
     <>
@@ -62,7 +59,7 @@ const ProductPage = () => {
 
       <article className="flex flex-col justify-center items-center mt-20 max-md:mt-2">
         <h1 className="m-7 text-[2rem]  w5 max-md:text-[1.7rem] ">
-        {t("related")}
+          {t("related")}
         </h1>
         <RandomProductList items={data?.random} />
       </article>

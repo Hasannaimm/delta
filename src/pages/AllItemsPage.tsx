@@ -2,15 +2,16 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { CategoryItems } from "../types";
 import { useQuery } from "@tanstack/react-query";
-import { Url, en } from "../hooks";
+import { Url, en, lng } from "../hooks";
 import MainCarousel from "../components/MainCarousel";
 import CategoryPagination from "../components/CategoryPagination";
 import { GrNext, GrPrevious } from "react-icons/gr";
 import AdCampain from "../components/AdCampain";
 import { useTranslation } from "react-i18next";
+import Loader from "../components/Loader";
 
 const AllItemsPage = () => {
-  const {t}= useTranslation()
+  const { t } = useTranslation();
   const { catname } = useParams();
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -19,7 +20,7 @@ const AllItemsPage = () => {
     refetchOnWindowFocus: false,
     queryKey: ["categoryitems", catname, currentPage],
     queryFn: () =>
-      fetch(`${Url}/${en}/items?page=${currentPage}`).then((res) =>
+      fetch(`${Url}/${lng}/items?page=${currentPage}`).then((res) =>
         res.json()
       ),
   });
@@ -29,15 +30,12 @@ const AllItemsPage = () => {
   };
 
   if (isFetching) {
-    return (
-      null
-    );
+    return <Loader />;
   }
 
   if (error) {
     return <div>An error has occurred: {error.message}</div>;
   }
-
 
   return (
     <>
@@ -81,7 +79,7 @@ const AllItemsPage = () => {
         </div>
         <div>
           <span className="text-[#334774]  w5 text-sm ">
-          {t("showing", { f: data?.from, l: data?.to, t: data?.total })}  
+            {t("showing", { f: data?.from, l: data?.to, t: data?.total })}
           </span>
         </div>
       </main>

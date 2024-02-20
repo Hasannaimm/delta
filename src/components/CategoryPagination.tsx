@@ -1,10 +1,11 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
-import { Url, en } from "../hooks";
+import { Url, lng } from "../hooks";
 import { CategoryItems } from "../types";
 import { flexing } from "../utils";
 import { useParams } from "react-router-dom";
 import CategorieItems from "../components/CategorieItems";
+import { useTranslation } from "react-i18next";
 
 interface CategoryPaginationProps {
   onPageChange: (newPage: number) => void;
@@ -13,9 +14,7 @@ interface CategoryPaginationProps {
 }
 
 const CategoryPagination: React.FC<CategoryPaginationProps> = ({
-
   currentPage,
-
 }) => {
   let { catname } = useParams();
 
@@ -24,21 +23,19 @@ const CategoryPagination: React.FC<CategoryPaginationProps> = ({
     refetchOnWindowFocus: false,
     queryKey: ["categoryitems", catname, currentPage], // Include currentPage in the queryKey
     queryFn: () =>
-      fetch(`${Url}/${en}/filteritems/${catname}?page=${currentPage}`).then(
+      fetch(`${Url}/${lng}/filteritems/${catname}?page=${currentPage}`).then(
         (res) => res.json()
       ),
   });
 
   if (isFetching) {
-    return (
-    null
-    );
+    return null;
   }
 
   if (error) {
     return <div>An error has occurred: {error.message}</div>;
   }
-
+const {t} =useTranslation()
   return (
     <>
       <section className="flex flex-wrap justify-center items-center w-[70%] mt-10">
@@ -53,7 +50,7 @@ const CategoryPagination: React.FC<CategoryPaginationProps> = ({
           ))
         ) : (
           <div className={`${flexing}`}>
-            <p className="w7">No data available</p>
+            <p className="w7">{t("unavailable")}</p>
           </div>
         )}
       </section>

@@ -28,7 +28,7 @@ const Search = () => {
             required
             onChange={(e) => setSearch(e.target.value)}
             onKeyDown={handleKeyDown}
-            type="text"
+            type="search"
             placeholder={t('Search')}
             className="outline-none px-2"
           />

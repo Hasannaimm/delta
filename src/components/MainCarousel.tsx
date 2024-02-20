@@ -1,7 +1,7 @@
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import Button from "./Button";
-import { Url, Url_img, en } from "../hooks";
+import { Url, Url_img,  lng } from "../hooks";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import Category from "./SubCategory";
@@ -21,7 +21,7 @@ const MainCarousel = () => {
     refetchOnMount: false,
     refetchOnWindowFocus: false,
     queryKey: ["carousel"],
-    queryFn: () => fetch(`${Url}/${en}/headers`).then((res) => res.json()),
+    queryFn: () => fetch(`${Url}/${lng}/headers`).then((res) => res.json()),
   });
 
   if (isPending) return null;

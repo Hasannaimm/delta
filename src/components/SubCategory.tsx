@@ -1,31 +1,26 @@
 import { MainColor, flexing } from "../utils";
 import { useQuery } from "@tanstack/react-query";
 import { CategoryProps } from "../types";
-import { Url, en, } from "../hooks";
+import { Url, lng } from "../hooks";
+import { useTranslation } from "react-i18next";
 
 const Category = () => {
   const { isPending, error, data } = useQuery<CategoryProps[]>({
-
     refetchOnWindowFocus: false,
     queryKey: ["repoData"],
-    queryFn: () => fetch(`${Url}/${en}/categories`).then((res) => res.json()),
+    queryFn: () => fetch(`${Url}/${lng}/categories`).then((res) => res.json()),
   });
 
-  if (isPending)
-    return (
-     null
-    );
+  if (isPending) return null;
   if (error) return "An error has occurred: " + error?.message;
-
- 
-  
+  const { t } = useTranslation();
   return (
     <section
       className={`${flexing} gap-8 text-white Rubik py-1 w4 text-sm relative max-md:hidden`}
       style={{ background: MainColor }}
     >
       <a className="hover:text-gray-200 p-2 text-md uppercase" href="/">
-        Home
+        {t("home")}
       </a>
       {data?.map((item, index) => (
         <a

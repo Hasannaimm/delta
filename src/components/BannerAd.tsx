@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { Url, Url_img, en } from "../hooks";
+import { Url, Url_img, lng } from "../hooks";
 import { AdData } from "../types";
 
 const BannerAd = () => {
@@ -7,14 +7,11 @@ const BannerAd = () => {
     refetchOnMount: false,
     refetchOnWindowFocus: false,
     queryKey: ["bad"],
-    queryFn: () => fetch(`${Url}/${en}/ads`).then((res) => res.json()),
+    queryFn: () => fetch(`${Url}/${lng}/ads`).then((res) => res.json()),
   });
 
   if (isFetching) {
-    return (
-      null
-      
-    );
+    return null;
   }
 
   if (error) {
@@ -25,7 +22,7 @@ const BannerAd = () => {
 
   return (
     <div
-      className={`w-[200px] h-[500px] m-3 absolute top-1/4 left-14 cursor-pointer shadow-md ${
+      className={`w-[200px] h-[500px] max-md:hidden m-3 absolute top-1/4 left-14 cursor-pointer shadow-md ${
         data?.banner ? " " : "hidden"
       } `}
     >

@@ -1,38 +1,22 @@
-import { Link } from "react-router-dom";
-import { MainColor, flexing } from "../utils";
-import Search from "./Search";
-import { logo } from "../assets";
-import { BsList } from "react-icons/bs";
-import { useState } from "react";
-import { IoCloseSharp } from "react-icons/io5";
-import { CategoryProps } from "../types";
-import { useQuery } from "@tanstack/react-query";
-import { Url, en } from "../hooks";
-import cookies from "js-cookie";
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { BsList } from "react-icons/bs";
+import { IoCloseSharp } from "react-icons/io5";
+import { useQuery } from "@tanstack/react-query";
+import cookies from "js-cookie";
+import { MainColor, flexing } from "../utils";
+import { Url, lng } from "../hooks";
+import { logo } from "../assets";
+import Search from "./Search";
 import Loader from "./Loader";
+import { CategoryProps } from "../types";
 
 const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const { t, i18n } = useTranslation();
-
-  // const languages = [
-  //   {
-  //     code: "fr",
-  //     name: "Français",
-  //     country_code: "fr",
-  //   },
-  //   {
-  //     code: "en",
-  //     name: "English",
-  //     country_code: "gb",
-  //   },
-  // ];
-
   const currentLanguageCode = cookies.get("i18next") || "en";
-  //const currentLanguage = languages.find((l) => l.code === currentLanguageCode);
-
+  const navigation = useNavigate();
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -42,25 +26,21 @@ const Header = () => {
     cookies.set("i18next", newLang);
   };
 
-  const handleLanguageChange = () => {
-    const newLang = currentLanguageCode === "fr" ? "en" : "fr";
+  const handleLanguageChange = (newLang: string) => {
     setLanguage(newLang);
+    navigation("/");
+    window.location.reload();
   };
 
   const { isPending, error, data } = useQuery<CategoryProps[]>({
     refetchOnMount: false,
     refetchOnWindowFocus: false,
     queryKey: ["repoData"],
-    queryFn: () => fetch(`${Url}/${en}/categories`).then((res) => res.json()),
+    queryFn: () => fetch(`${Url}/${lng}/categories`).then((res) => res.json()),
   });
 
-  if (isPending)
-    return (
-     null
-    );
-  if (error) return "An error has occurred: " + error?.message;
-
-  console.log(currentLanguageCode);
+  if (isPending) return <Loader />;
+  if (error) return `An error has occurred: ${error.message}`;
 
   return (
     <>
@@ -77,7 +57,7 @@ const Header = () => {
 
         <ul className={`${flexing} text-[13px] gap-x-4 max-md:hidden `}>
           <li>
-            <a href="/about-us">{t("about")}</a>
+            <Link to="/about-us">{t("about")}</Link>
           </li>
         </ul>
 
@@ -85,9 +65,7 @@ const Header = () => {
           <Link
             to={"/"}
             className="uppercase  w7"
-            onClick={() => {
-              setIsMenuOpen(false);
-            }}
+            onClick={() => setIsMenuOpen(false)}
           >
             <img
               src={logo}
@@ -101,15 +79,34 @@ const Header = () => {
 
         <div className={`${flexing} gap-x-10 max-md:hidden`}>
           <div className="p-1 flex flex-col gap-y-2">
-            <button className={`flex justify-end mr-2`}>
-              <h1
-                style={{ color: MainColor }}
-                className="text-lg w7"
-                onClick={handleLanguageChange}
+            <div className="flex justify-end items-center">
+              <button
+                className={`flex justify-end mr-2`}
+                onClick={() => handleLanguageChange("en")}
               >
-                {t("language")}
-              </h1>
-            </button>
+                <h1
+                  style={{
+                    color: currentLanguageCode === "en" ? MainColor : "#636363",
+                  }}
+                  className="text-lg w7"
+                >
+                  EN
+                </h1>
+              </button>
+              <button
+                className={`flex justify-end mr-2`}
+                onClick={() => handleLanguageChange("fr")}
+              >
+                <h1
+                  style={{
+                    color: currentLanguageCode === "fr" ? MainColor : "#636363",
+                  }}
+                  className="text-lg w7"
+                >
+                  FR
+                </h1>
+              </button>
+            </div>
 
             <Search />
           </div>
@@ -121,32 +118,53 @@ const Header = () => {
             onClick={() => setIsMenuOpen(false)}
           >
             <div className="menu-items flex flex-col opacity-100 my-10">
+              <a  className="hover:text-gray-200 p-2 text-md border border-[#334774] m-1" href="/">
+                {t("home")}
+              </a>
               {data?.map((item, index) => (
-                <a
+                <Link
                   key={index}
                   className="hover:text-gray-200 p-2 text-md border border-[#334774] m-1"
-                  href={`/${item?.id}`}
+                  to={`/${item?.id}`}
                 >
                   {item?.name}
-                </a>
+                </Link>
               ))}
             </div>
 
-            {/* Your menu content goes here */}
             <ul className={`${flexing} text-[13px] gap-x-4 flex-col gap-3`}>
-              <li>
-                <button className={`flex justify-end mr-2`}>
+              <div className="flex flex-col justify-end items-center">
+                <button
+                  className={`flex justify-end mr-2`}
+                  onClick={() => handleLanguageChange("en")}
+                >
                   <h1
-                    style={{ color: MainColor }}
+                    style={{
+                      color:
+                        currentLanguageCode === "en" ? MainColor : "#636363",
+                    }}
                     className="text-lg w7"
-                    onClick={handleLanguageChange}
                   >
-                    {t("language")}
+                    EN
                   </h1>
                 </button>
-              </li>
+                <button
+                  className={`flex justify-end mr-2`}
+                  onClick={() => handleLanguageChange("fr")}
+                >
+                  <h1
+                    style={{
+                      color:
+                        currentLanguageCode === "fr" ? MainColor : "#636363",
+                    }}
+                    className="text-lg w7"
+                  >
+                    FR
+                  </h1>
+                </button>
+              </div>
               <li>
-                <a href="/about-us">AboutUS</a>
+                <Link to="/about-us">About Us</Link>
               </li>
             </ul>
           </div>

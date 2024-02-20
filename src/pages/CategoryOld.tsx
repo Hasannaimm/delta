@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import AdCampain from "../components/AdCampain";
 import CategoriesHero from "../components/CategoriesHero";
-import { Url, Url_img, en } from "../hooks";
+import { Url, Url_img, lng } from "../hooks";
 import { CategoryItems } from "../types";
 import { flexing } from "../utils";
 import { useParams } from "react-router-dom";
@@ -16,13 +16,11 @@ const CategoryPage = () => {
     refetchOnWindowFocus: false,
     queryKey: ["categoryitems", catname],
     queryFn: () =>
-      fetch(`${Url}/${en}/filteritems/${catname}`).then((res) => res.json()),
+      fetch(`${Url}/${lng}/filteritems/${catname}`).then((res) => res.json()),
   });
 
   if (isFetching) {
-    return (
-     null
-    );
+    return null;
   }
 
   if (error) {
@@ -32,7 +30,7 @@ const CategoryPage = () => {
   return (
     <>
       <CategoriesHero
-      isabout={false}
+        isabout={false}
         name={data?.category?.name}
         imageurl={`${Url_img}/${data?.category?.img_url}`}
       />
@@ -54,14 +52,7 @@ const CategoryPage = () => {
             </div>
           )}
         </section>
-        <div>
-
-
-                    dedfe
-
-
-
-        </div>
+        <div>dedfe</div>
       </main>
 
       <AdCampain ishome={false} />
