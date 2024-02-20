@@ -4,7 +4,7 @@ import { Url, Url_img, lng } from "../hooks";
 import { flexing } from "../utils";
 import { useNavigate } from "react-router-dom";
 import cookies from "js-cookie";
-import { t } from "i18next";
+
 type Item = {
   id: number;
   name: string;
@@ -145,7 +145,7 @@ const Hero = () => {
           ))
         ) : (
           <div className={`${flexing}`}>
-            <p className="w7">{t("unavailable")}</p>
+            <p className="w7">no data</p>
           </div>
         )}
       </div>

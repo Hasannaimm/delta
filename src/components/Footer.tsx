@@ -1,4 +1,5 @@
-// types.ts
+import cookies from "js-cookie";
+
 
 export interface ContactInfo {
   text: string;
@@ -8,7 +9,6 @@ export interface ContactInfo {
   instagram: string;
 }
 
-// Footer.tsx
 
 import { useQuery } from "@tanstack/react-query";
 import { flexing } from "../utils";
@@ -19,6 +19,8 @@ import { logo } from "../assets";
 import { useTranslation } from "react-i18next";
 
 const Footer = () => {
+  const currentLanguageCode = cookies.get("i18next") || "en";
+
   const {t} =useTranslation()
   const { isPending, error, data } = useQuery<ContactInfo>({
     refetchOnMount:false , 
@@ -36,6 +38,8 @@ const Footer = () => {
   if (error) {
     return <div>An error has occurred: {error.message}</div>;
   }
+  console.log(data);
+  
 
   return (
     <footer
@@ -49,7 +53,7 @@ const Footer = () => {
               className="max-md:h-[60px] max-md:w-[60px] "
               alt="logo"
             />
-        <p className="text-[13px] text-gray-200 w4 w-[400px] max-md:max-w-[310px] ">{data?.text}</p>
+        <p className="text-[13px] text-gray-200 w4 w-[400px] max-md:max-w-[310px] ">{currentLanguageCode=="en"?data?.text:data.text_fr}</p>
       </div>
 
       <div className="text-center flex flex-col gap-y-3 ">

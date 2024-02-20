@@ -48,6 +48,7 @@ i18next
           followus: "Follow Us",
           unavailable:"Data Not Available" ,
           home:"Home",
+          view:"View all Products!"
         },
       },
       fr: {
@@ -65,7 +66,8 @@ i18next
           related: "Produits connexes",
           followus: "Suivez-nous",
           unavailable:"Données non disponibles",
-          home:"maison"
+          home:"maison" , 
+          view:"Voir tous les produits!"
         },
       },
     },
