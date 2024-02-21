@@ -57,7 +57,7 @@ const Header = () => {
 
         <ul className={`${flexing} text-[13px] gap-x-4 max-md:hidden `}>
           <li>
-            <Link to="/about-us">{t("about")}</Link>
+            <Link to="/about-us" className="w7" style={{color:MainColor} }>{t("about")}</Link>
           </li>
         </ul>
 
