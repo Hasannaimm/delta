@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { CategoryItems } from "../types";
 import { useQuery } from "@tanstack/react-query";
-import { Url, en, lng } from "../hooks";
+import { Url,  lng } from "../hooks";
 import MainCarousel from "../components/MainCarousel";
 import CategoryPagination from "../components/CategoryPagination";
 import { GrNext, GrPrevious } from "react-icons/gr";
