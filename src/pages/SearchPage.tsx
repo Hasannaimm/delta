@@ -155,7 +155,7 @@ const SearchPage: React.FC = () => {
 
         <div>
           <span className={`text-[#334774] w5 text-sm ${!data?.items || data?.items.length === 0 ? "hidden" : ""}`}>
-            Showing from {data?.from} to {data?.to} of {data?.total}
+          {t("showing", { f: data?.from, l: data?.to, t: data?.total })}
           </span>
         </div>
       </main>

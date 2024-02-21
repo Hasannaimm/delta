@@ -38,8 +38,7 @@ const Footer = () => {
   if (error) {
     return <div>An error has occurred: {error.message}</div>;
   }
-  console.log(data);
-  
+
 
   return (
     <footer
