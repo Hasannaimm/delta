@@ -45,7 +45,7 @@ i18next
           about: "About Us",
           showing: "Showing from {{f}} to {{l}} of {{t}}",
           related: "Related Products",
-          followus: "Follow Us",
+          followus: "Contact Us",
           unavailable:"Data Not Available" ,
           home:"Home",
           view:"View all Products!"
@@ -64,7 +64,7 @@ i18next
           about: "à propos de nous",
           showing: "Affichage de {{f}} à {{l}} sur {{t}}",
           related: "Produits connexes",
-          followus: "Suivez-nous",
+          followus: "Contactez-nous",
           unavailable:"Données non disponibles",
           home:"maison" , 
           view:"Voir tous les produits!"

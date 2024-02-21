@@ -1,4 +1,12 @@
 import cookies from "js-cookie";
+import { useQuery } from "@tanstack/react-query";
+import { flexing } from "../utils";
+import { AiFillInstagram } from "react-icons/ai";
+import { FaFacebookF, FaWhatsapp } from "react-icons/fa";
+import { Url, en } from "../hooks";
+import { logo } from "../assets";
+import { useTranslation } from "react-i18next";
+
 
 
 export interface ContactInfo {
@@ -10,13 +18,6 @@ export interface ContactInfo {
 }
 
 
-import { useQuery } from "@tanstack/react-query";
-import { flexing } from "../utils";
-import { AiFillInstagram } from "react-icons/ai";
-import { FaFacebookF, FaWhatsapp } from "react-icons/fa";
-import { Url, en } from "../hooks";
-import { logo } from "../assets";
-import { useTranslation } from "react-i18next";
 
 const Footer = () => {
   const currentLanguageCode = cookies.get("i18next") || "en";
