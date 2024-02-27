@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { flexing } from "../utils";
-
+//@ts-ignore
+import DOMPurify from "dompurify";
 type ProductProps = {
   name: string | undefined;
   subname: string | undefined;
@@ -21,6 +22,10 @@ const ArticleDescription = ({
   function activatedView(e: string) {
     setActiveView(e);
   }
+  const sanitizedDescription = instrunctions
+  ? DOMPurify.sanitize(instrunctions || "")
+  : "";
+
 
   return (
     <>
@@ -72,7 +77,7 @@ const ArticleDescription = ({
                 </article>
               ) : (
                 <article className="max-w-[400px] flex flex-col gap-y-4">
-                  <p>{instrunctions}</p>
+                  <p  dangerouslySetInnerHTML={{ __html: sanitizedDescription }}  />
                 </article>
               )}
               <div></div>

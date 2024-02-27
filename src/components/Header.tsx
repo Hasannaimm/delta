@@ -57,14 +57,20 @@ const Header = () => {
 
         <ul className={`${flexing} text-[13px] gap-x-4 max-md:hidden `}>
           <li>
-            <Link to="/about-us" className="w7" style={{color:MainColor} }>{t("about")}</Link>
+            <Link
+              to="/about-us"
+              className="w7 p-14"
+              style={{ color: MainColor }}
+            >
+              {t("about")}
+            </Link>
           </li>
         </ul>
 
         <div className="">
           <Link
             to={"/"}
-            className="uppercase  w7"
+            className="uppercase  w7 flex justify-center items-center max-sm:flex-col"
             onClick={() => setIsMenuOpen(false)}
           >
             <img
@@ -74,6 +80,9 @@ const Header = () => {
               className="max-md:h-[60px] max-md:w-[60px] "
               alt="logo"
             />
+            <div>
+              <h1 className="w7 text-xl max-sm:text-lg">Deltaagro</h1>
+            </div>
           </Link>
         </div>
 
@@ -118,7 +127,10 @@ const Header = () => {
             onClick={() => setIsMenuOpen(false)}
           >
             <div className="menu-items flex flex-col opacity-100 my-10">
-              <a  className="hover:text-gray-200 p-2 text-md border border-[#334774] m-1" href="/">
+              <a
+                className="hover:text-gray-200 p-2 text-md border border-[#334774] m-1"
+                href="/deltaagro"
+              >
                 {t("home")}
               </a>
               {data?.map((item, index) => (

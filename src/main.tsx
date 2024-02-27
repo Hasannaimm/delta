@@ -80,7 +80,7 @@ i18next
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <Suspense fallback={loadingMarkup}>
     <React.StrictMode>
-      <BrowserRouter>
+      <BrowserRouter basename="/deltaagro">
         <QueryClientProvider client={queryClient}>
           <App />
         </QueryClientProvider>

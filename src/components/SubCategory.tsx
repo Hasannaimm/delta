@@ -20,14 +20,14 @@ const Category = () => {
       className={`${flexing} gap-8 text-white Rubik py-1 w4 text-sm relative max-md:hidden`}
       style={{ background: MainColor }}
     >
-      <a className="hover:text-gray-200 p-2 text-md uppercase" href="/">
-       {currentLanguageCode=="Home" ? "Home" :"Maison"}
+      <a className="hover:text-gray-200 p-2 text-md uppercase" href="/deltaagro">
+       {currentLanguageCode=="en" ? "Home" :"Maison"}
       </a>
       {data?.map((item, index) => (
         <a
           key={index}
           className="hover:text-gray-200 p-2 text-md"
-          href={`/${item?.id}`}
+          href={`/deltaagro/${item?.id}`}
         >
           {item?.name}
         </a>

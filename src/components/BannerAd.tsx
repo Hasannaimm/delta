@@ -22,7 +22,7 @@ const BannerAd = () => {
 
   return (
     <div
-      className={`w-[200px] h-[500px] max-md:hidden m-3 absolute top-1/4 left-14 cursor-pointer shadow-md ${
+      className={`w-[200px] h-[500px] max-md:hidden m-3 absolute top-1/4 left-1 cursor-pointer shadow-md ${
         data?.banner ? " " : "hidden"
       } `}
     >
