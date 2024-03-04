@@ -21,8 +21,8 @@ const AdCampain = ({ ishome }: videoProps) => {
   }
 
   return (
-    <section className=" text-center m-14 p-8 rounded-3xl">
-      <h1 className="text-black text-[2rem] w5 my-3  ">{t("ad")}</h1>
+    <section className=" text-center m-14 p-8 rounded-3xl bg-[#f6ffc5] ">
+      <h1 className="text-black text-[2rem] w7 my-3  ">{t("ad")}</h1>
 
       {data && (
         <video

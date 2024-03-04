@@ -49,7 +49,7 @@ const MainCarousel = () => {
               className="custom-arrow custom-arrow-left z-10  "
             >
               <span className="arrow-left">
-                <GrPrevious className="text-[#334774] text-[2.5rem]" />
+                <GrPrevious className="text-[#b2c83f] text-[2.5rem]" />
               </span>
             </button>
           )
@@ -63,7 +63,7 @@ const MainCarousel = () => {
               className="custom-arrow custom-arrow-right z-10 "
             >
               <span className="arrow-right">
-                <GrNext className="text-[#334774] text-[2.5rem]" />
+                <GrNext className="text-[#b2c83f] text-[2.5rem]" />
               </span>
             </button>
           )

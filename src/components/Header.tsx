@@ -45,13 +45,13 @@ const Header = () => {
   return (
     <>
       <section
-        className={`${flexing} justify-between px-8 py-7 Rubik w5 relative `}
+        className={`${flexing} justify-between px-8 py-7 Rubik w5 relative  `}
       >
         <div className="md:hidden cursor-pointer" onClick={toggleMenu}>
           {isMenuOpen ? (
-            <IoCloseSharp className="text-[2rem] text-[#334774] " />
+            <IoCloseSharp className="text-[2rem] text-[#8fbc8f] " />
           ) : (
-            <BsList className="text-[2rem] text-[#334774] " />
+            <BsList className="text-[2rem] text-[#8fbc8f] " />
           )}
         </div>
 
