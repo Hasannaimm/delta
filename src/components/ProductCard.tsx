@@ -8,20 +8,20 @@ const ProductCard = React.memo(
 
     return (
       <div
-        className="flex flex-col gap-y-3 justify-center items-center cursor-pointer"
+        className="flex flex-col gap-y-8 justify-center items-center cursor-pointer     "
         onClick={() => {
           navigate(`/${catid}/${id}`);
         }}
       >
         <img
           src={image}
-          className="h-72 w-72 rounded-3xl"
+          className="h-[250px] w-72 rounded-tl-[100px] rounded-br-[100px] border-[#b2c83f] border-[5px] object-cover"
           alt={name}
           loading="lazy"
         />
         <div className="flex flex-col justify-center items-center">
-          <h2 className="w5 text-[15px] ">{name}</h2>
-          <h5 className="w4 text-[12px] ">{sub}</h5>
+          <h2 className="w7 text-[15px] ">{name}</h2>
+          <h5 className="w4 text-[12px]  text-[#b2c83f] ">{sub}</h5>
         </div>
       </div>
     );

@@ -26,8 +26,8 @@ const Star = () => {
 
   return (
     <section className={`flex  flex-col  justify-center items-center mt-10 `}>
-      <h1 className="m-5 text-[2rem]  w5">{t("favorite")}</h1>
-      <div className="flex justify-center flex-wrap gap-10">
+      <h1 className="m-5  text-[2rem]  w5">{t("favorite")}</h1>
+      <div className="flex justify-center flex-wrap gap-10 mt-10">
         {data?.map((item) => (
           <ProductCard
             image={`${Url_img}/${item?.img_url}`}
