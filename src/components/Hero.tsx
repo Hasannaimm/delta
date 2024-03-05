@@ -54,7 +54,7 @@ const Image = ({
       height: "100%",
       objectFit: "cover",
     }}
-    className="image"
+    className="image rounded-xl"
     onLoad={onLoad}
   />
 );

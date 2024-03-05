@@ -15,7 +15,7 @@ const ProductCard = React.memo(
       >
         <img
           src={image}
-          className="h-[250px] w-72 rounded-tl-[100px] rounded-br-[100px] border-[#b2c83f] border-[5px] object-cover"
+          className="h-80 w-72 rounded-tl-[100px] rounded-br-[100px] border-[#b2c83f] border-[5px] object-cover"
           alt={name}
           loading="lazy"
         />
