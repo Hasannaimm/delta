@@ -17,7 +17,7 @@ const ArticleDescription = ({
   sizes,
   instrunctions,
 }: ProductProps) => {
-  const [activeView, setActiveView] = useState<string>("DESCRIPTION");
+  const [activeView, setActiveView] = useState<string>("INSTRUCTION");
 
   function activatedView(e: string) {
     setActiveView(e);
@@ -38,7 +38,7 @@ const ArticleDescription = ({
         <div className="w-full">
           <div className={``}>
             <div className={`${flexing} gap-x-9 w-full w7 `}>
-              <button
+              {/* <button
                 onClick={() => activatedView("DESCRIPTION")}
                 className={`${
                   activeView === "DESCRIPTION"
@@ -47,7 +47,7 @@ const ArticleDescription = ({
                 }`}
               >
                 DESCRIPTION
-              </button>
+              </button> */}
               <button
                 onClick={() => activatedView("INSTRUCTION")}
                 className={`${

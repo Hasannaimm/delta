@@ -23,7 +23,7 @@ const CategorieItems = ({ id, url, name }: CategoryItems) => {
             className="cursor-pointer relative hover-div  w-[300px] h-[300px]  "
           >
             <img
-              className="image"
+              className="image rounded-xl"
               src={`${Url_img}/${url}`}
               alt={name}
               style={{

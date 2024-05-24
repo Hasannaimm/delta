@@ -127,7 +127,7 @@ const Hero = () => {
 
   return (
     <section className="flex flex-col justify-center items-center mt-20 ">
-      <div style={{ maxWidth: "80%", margin: "auto" }} className="">
+      <div style={{ width: "80%", margin: "auto" }} className="">
         {data && data.length > 0 ? (
           data.map((itemSet, setIndex) => (
             <div

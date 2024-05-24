@@ -38,7 +38,7 @@ const CategoryPagination: React.FC<CategoryPaginationProps> = ({
 const {t} =useTranslation()
   return (
     <>
-      <section className="flex flex-wrap justify-center items-center w-[70%] mt-10">
+      <section className="flex flex-wrap justify-center items-center w-[80%] mt-10">
         {data && data.items.length > 0 ? (
           data?.items?.map((itemSet, setIndex) => (
             <CategorieItems

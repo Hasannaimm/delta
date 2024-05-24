@@ -42,7 +42,7 @@ const ProductPage = () => {
           <img
             src={`${Url_img}/${data?.item?.img_url}`}
             alt={data?.item?.name}
-            className="h-[400px] w-[400px] p-1"
+            className="h-[400px] w-[400px] p-1 border-2 border-[#b2c83f] "
           />
         </div>
 
