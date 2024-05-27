@@ -129,7 +129,7 @@ const Header = () => {
             <div className="menu-items flex flex-col opacity-100 my-10">
               <a
                 className="hover:text-gray-200 p-2 text-md border border-[#334774] m-1"
-                href="/deltaagro"
+                href=""
               >
                 {t("home")}
               </a>
