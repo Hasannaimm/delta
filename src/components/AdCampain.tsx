@@ -21,7 +21,7 @@ const AdCampain = ({ ishome }: videoProps) => {
   }
 
   return (
-    <section className=" text-center m-14 p-8 rounded-3xl bg-[#f6ffc5] ">
+    <section className={` ${data?.home_ad?.url || data?.category_ad?.url ? " " :"hidden"} text-center m-14 p-8 rounded-3xl bg-[#f6ffc5] `}>
       <h1 className="text-black text-[2rem] w7 my-3  ">{t("ad")}</h1>
 
       {data && (

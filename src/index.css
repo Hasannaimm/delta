@@ -148,11 +148,11 @@
 }
 
 .hover-div:hover::before {
-  background: rgba(255, 255, 255, 0.726); 
+  background: rgba(122, 122, 122, 0.726); 
 }
 
 .hover-div:hover p {
-  color: black;
+  color: rgb(255, 255, 255);
 }
 
 /* MainCarousel.css */

@@ -98,7 +98,8 @@ const Item = ({
         onLoad={handleImageLoad}
       />
       {isImageLoaded && (
-        <p className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white uppercase transition text-lg w4  hover:text-black">
+        <p className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  
+        uppercase transition text-2xl w4  hover:text-white  ">
           {item.name}
         </p>
       )}

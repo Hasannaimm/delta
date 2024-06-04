@@ -42,6 +42,7 @@ const Footer = () => {
 
 
   return (
+    <>          
     <footer
       className={`${flexing} mt-10 bg-[#2A2A2A] px-6 text-white Rubik w4 justify-between p-7 max-md:flex-col`}
     >
@@ -89,6 +90,11 @@ const Footer = () => {
       </div>
  
     </footer>
+
+<article className="bg-[#2A2A2A] flex justify-center items-center p-6 "> 
+    <p className="Rubik text-white text-xs">© 2024 powered by <a href="https://finovafintech.io/" className="text-[#25e9cc] ">Finova FinTech.</a> </p>
+</article>
+    </>
   );
 };
 

@@ -21,7 +21,10 @@ const Category = () => {
       style={{ background: MainColor }}
     >
       <a className="hover:text-gray-200 p-2 text-md uppercase" href="/">
-       {currentLanguageCode=="en" ? "Home" :"Maison"}
+        {currentLanguageCode == "en" ? "Home" : "Maison"}
+      </a>
+      <a href="/about-us" className="hover:text-gray-200 p-2 text-md uppercase" style={{ background: MainColor }}>
+        {currentLanguageCode == "en" ? "About Us " : "À propos de nous"}
       </a>
       {data?.map((item, index) => (
         <a

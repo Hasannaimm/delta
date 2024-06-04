@@ -45,7 +45,7 @@ const Header = () => {
   return (
     <>
       <section
-        className={`${flexing} justify-between px-8 py-7 Rubik w5 relative  `}
+        className={`${flexing} justify-between px-8  Rubik w5 relative mb-3 `}
       >
         <div className="md:hidden cursor-pointer" onClick={toggleMenu}>
           {isMenuOpen ? (
@@ -55,33 +55,26 @@ const Header = () => {
           )}
         </div>
 
-        <ul className={`${flexing} text-[13px] gap-x-4 max-md:hidden `}>
-          <li>
-            <Link
-              to="/about-us"
-              className="w7 p-14"
-              style={{ color: MainColor }}
-            >
-              {t("about")}
-            </Link>
-          </li>
+        <ul className={`${flexing} text-[13px] gap-x-4 max-md:hidden  w-[220px]`}>
+          <li></li>
         </ul>
 
         <div className="">
           <Link
             to={"/"}
-            className="uppercase  w7 flex justify-center items-center max-sm:flex-col"
+            className="uppercase  w7 flex flex-col justify-center items-center max-sm:flex-col"
             onClick={() => setIsMenuOpen(false)}
           >
             <img
               src={logo}
-              height={100}
-              width={100}
-              className="max-md:h-[60px] max-md:w-[60px] "
+              height={180}
+              width={180}
+              className="max-md:h-[80px] max-md:w-[80px] "
               alt="logo"
             />
-            <div>
-              <h1 className="w7 text-xl max-sm:text-lg">Deltaagro</h1>
+            <div className="flex flex-col justify-center items-center text-[#000000af] ">
+              <h1 className="w7 text-4xl max-sm:text-lg">Delta</h1>
+              <p  className="uppercase w6 text-xs">agro limited</p>
             </div>
           </Link>
         </div>
@@ -129,9 +122,15 @@ const Header = () => {
             <div className="menu-items flex flex-col opacity-100 my-10">
               <a
                 className="hover:text-gray-200 p-2 text-md border border-[#334774] m-1"
-                href=""
+                href="/"
               >
                 {t("home")}
+              </a>
+              <a
+                href="/about-us"
+                className="hover:text-gray-200 p-2 text-md border border-[#334774] m-1"
+              >
+                {t("about")}
               </a>
               {data?.map((item, index) => (
                 <Link
@@ -175,9 +174,7 @@ const Header = () => {
                   </h1>
                 </button>
               </div>
-              <li>
-                <Link to="/about-us">About Us</Link>
-              </li>
+          
             </ul>
           </div>
         )}
