@@ -72,7 +72,7 @@ const Header = () => {
               className="max-md:h-[80px] max-md:w-[80px] "
               alt="logo"
             />
-            <div className="flex flex-col justify-center items-center text-[#000000af] ">
+            <div className="flex flex-col justify-center items-center text-[#000000af] md:-mt-6 ">
               <h1 className="w7 text-4xl max-sm:text-lg">Delta</h1>
               <p  className="uppercase w6 text-xs">agro limited</p>
             </div>
