@@ -3,97 +3,115 @@ import { useQuery } from "@tanstack/react-query";
 import { flexing } from "../utils";
 import { AiFillInstagram } from "react-icons/ai";
 import { FaFacebookF, FaWhatsapp } from "react-icons/fa";
-import { Url, en } from "../hooks";
+import { Url, en, lng, Url_img } from "../hooks";
 import { logo } from "../assets";
 import { useTranslation } from "react-i18next";
-
-
-
-export interface ContactInfo {
-  text: string;
-  text_fr: string;
-  whatsapp: string;
-  facebook: string;
-  instagram: string;
-}
-
-
+import { ItemHome, ContactInfo } from "../types";
 
 const Footer = () => {
   const currentLanguageCode = cookies.get("i18next") || "en";
+  const { t } = useTranslation();
 
-  const {t} =useTranslation()
-  const { isPending, error, data } = useQuery<ContactInfo>({
-    refetchOnMount:false , 
-    refetchOnWindowFocus:false,
+  const { isPending: isPendingFooter, error: footerError, data: footerData } = useQuery<ContactInfo>({
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
     queryKey: ["footer"],
     queryFn: () => fetch(`${Url}/${en}/footers`).then((res) => res.json()),
   });
 
-  if (isPending) {
-    return (
-     null
-    );
+  const { isFetching: isFetchingProducts, error: productsError, data: productsData } = useQuery<ItemHome[]>({
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
+    queryKey: ["homeitems"],
+    queryFn: () => fetch(`${Url}/${lng}/homeitems`).then((res) => res.json()),
+  });
+
+  if (isPendingFooter || isFetchingProducts) {
+    return null;
   }
 
-  if (error) {
-    return <div>An error has occurred: {error.message}</div>;
+  if (footerError) {
+    return <div>An error has occurred: {footerError.message}</div>;
   }
 
+  if (productsError) {
+    return <div className="flex justify-center items-center">Network error</div>;
+  }
 
   return (
-    <>          
-    <footer
-      className={`${flexing} mt-10 bg-[#2A2A2A] px-6 text-white Rubik w4 justify-between p-7 max-md:flex-col`}
-    >
-      <div>
-      <img
-              src={logo}
-              height={100}
-              width={100}
-              className="max-md:h-[60px] max-md:w-[60px] "
-              alt="logo"
-            />
-        <p className="text-[13px] text-gray-200 w4 w-[400px] max-md:max-w-[310px] ">{currentLanguageCode=="en"?data?.text:data.text_fr}</p>
-      </div>
+    <>
+      <footer
+        className={`${flexing} mt-10 bg-[#2A2A2A] px-6 text-white Rubik w4 justify-between p-7 max-md:flex-col`}
+      >
+        <div>
+          <img
+            src={logo}
+            height={100}
+            width={100}
+            className="max-md:h-[60px] max-md:w-[60px]"
+            alt="logo"
+          />
+          <p className="text-[13px] text-gray-200 w4 w-[400px] max-md:max-w-[310px]">
+            {currentLanguageCode === "en" ? footerData?.text : footerData?.text_fr}
+          </p>
+        </div>
 
-      <div className="text-center flex flex-col gap-y-3 ">
-        <h3>-{t("followus")}-</h3>
-        <ul className={`${flexing} gap-x-4`}>
-          {data?.whatsapp && (
-            <li>
-              <a href={data?.whatsapp} target="_blank">
-                <FaWhatsapp className="text-white h-6 w-6" />
-              </a>
-            </li>
-          )}
-          {data?.instagram && (
-            <li>
-              <a href={data?.instagram} target="_blank">
-                <AiFillInstagram className="text-white h-6 w-6" />
-              </a>
-            </li>
-          )}
-          {data?.facebook && (
-            <li>
-              <a href={data?.facebook} target="_blank">
-                <FaFacebookF className="text-white h-6 w-6" />
-              </a>
-            </li>
-          )}
-        </ul>
-      </div>
-      <div className={`${flexing} max-w-[320px]`}>
-        {/* <h2>CustomerService</h2>
-        <span>&nbsp;.&nbsp;</span>
-        <h2>PrivacyPolicy</h2> */}
-      </div>
- 
-    </footer>
+        <div className="text-center flex flex-col gap-y-3">
+          <h3 className="text-xl font-bold">-{t("followus")}-</h3>
+          <ul className={`${flexing} gap-x-4`}>
+            {footerData?.whatsapp && (
+              <li>
+                <a href={footerData?.whatsapp} target="_blank" rel="noopener noreferrer">
+                  <FaWhatsapp className="text-white h-6 w-6" />
+                </a>
+              </li>
+            )}
+            {footerData?.instagram && (
+              <li>
+                <a href={footerData?.instagram} target="_blank" rel="noopener noreferrer">
+                  <AiFillInstagram className="text-white h-6 w-6" />
+                </a>
+              </li>
+            )}
+            {footerData?.facebook && (
+              <li>
+                <a href={footerData?.facebook} target="_blank" rel="noopener noreferrer">
+                  <FaFacebookF className="text-white h-6 w-6" />
+                </a>
+              </li>
+            )}
+          </ul>
+        </div>
 
-<article className="bg-[#2A2A2A] flex justify-center items-center p-6 "> 
-    <p className="Rubik text-white text-xs">© 2024 powered by <a href="https://finovafintech.io/" className="text-[#25e9cc] ">Finova FinTech.</a> </p>
-</article>
+        <div className="text-center flex flex-col gap-y-3">
+          <h3 className="text-xl font-bold">- Our Products -</h3>
+          <ul className="list-disc list-inside text-[13px] text-gray-200">
+            {productsData?.slice(0, 4).map((item) => (
+              <li key={item.id}>
+                <a
+                  href={`/product/${item.id}`}
+                  className="text-white hover:text-[#25e9cc] transition-colors duration-300"
+                >
+                  {item.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className={`${flexing} max-w-[320px]`}>
+          <a href="/privacy-policy" className="text-white">Privacy Policy</a>
+        </div>
+      </footer>
+
+      <article className="bg-[#2A2A2A] flex justify-center items-center p-6">
+        <p className="Rubik text-white text-xs">
+          © 2024 powered by{" "}
+          <a href="https://finovafintech.io/" className="text-[#25e9cc]">
+            Finova FinTech.
+          </a>
+        </p>
+      </article>
     </>
   );
 };

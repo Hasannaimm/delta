@@ -55,7 +55,9 @@ const Header = () => {
           )}
         </div>
 
-        <ul className={`${flexing} text-[13px] gap-x-4 max-md:hidden  w-[220px]`}>
+        <ul
+          className={`${flexing} text-[13px] gap-x-4 max-md:hidden  w-[220px]`}
+        >
           <li></li>
         </ul>
 
@@ -74,7 +76,7 @@ const Header = () => {
             />
             <div className="flex flex-col justify-center items-center text-[#000000af] md:-mt-6 ">
               <h1 className="w7 text-4xl max-sm:text-lg">Delta</h1>
-              <p  className="uppercase w6 text-xs">agro limited</p>
+              <p className="uppercase w6 text-xs">agro limited</p>
             </div>
           </Link>
         </div>
@@ -174,7 +176,6 @@ const Header = () => {
                   </h1>
                 </button>
               </div>
-          
             </ul>
           </div>
         )}
