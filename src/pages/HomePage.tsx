@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 const HomePage = () => {
-  const navigate =useNavigate()
+  const navigate = useNavigate();
   const { t } = useTranslation();
   return (
     <>
@@ -20,11 +20,17 @@ const HomePage = () => {
 
           <Hero />
         </section>
-<div className="flex justify-center items-center my-10">
-<button onClick={()=>{
-navigate("/all-products")
-}} style={{color:MainColor}} className="text-lg w7" >{t("view")}</button>
-</div>
+        <div className="flex justify-center items-center my-10">
+          <button
+            onClick={() => {
+              navigate("/all-products");
+            }}
+            style={{ color: MainColor }}
+            className="text-lg w7"
+          >
+            {t("view")}
+          </button>
+        </div>
         <Star />
         <AdCampain ishome />
       </main>

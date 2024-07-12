@@ -6,6 +6,7 @@ import AboutUsPage from "../pages/AboutUsPage";
 import AllItemsPage from "../pages/AllItemsPage";
 import SearchPage from "../pages/SearchPage";
 import PrivacyPolicy from "../pages/PrivacyPolicy";
+import ContactUsPage from "../pages/ContactUsPage";
 const Routing = () => {
   return (
     <Routes>
@@ -16,7 +17,8 @@ const Routing = () => {
       <Route path="/all-products" element={<AllItemsPage />} />
       <Route path="/search/:productname" element={<SearchPage />} />
       <Route path="*" element={<HomePage />} />
-      <Route path="/privacy-policy" element={<PrivacyPolicy/>} />
+      <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+      <Route path="/contact-us" element={<ContactUsPage />} />
     </Routes>
   );
 };
