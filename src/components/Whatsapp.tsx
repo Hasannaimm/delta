@@ -1,10 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
-import { ContactInfo } from "./Footer";
 import { Url, en } from "../hooks";
 import { whats } from "../assets";
 
 const Whatsapp = () => {
-  const { isPending, error, data } = useQuery<ContactInfo>({
+  const { isPending, error, data } = useQuery({
     refetchOnMount: false,
     refetchOnWindowFocus: false,
     queryKey: ["footer"],

@@ -22,7 +22,7 @@ const ContactUsPage = () => {
       });
 
       if (response.data) {
-        console.log("Form submitted successfully");
+        alert("Message sent successfully");
         setFullName("");
         setEmail("");
         setReason("");
