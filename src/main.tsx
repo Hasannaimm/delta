@@ -48,7 +48,8 @@ i18next
           followus: "Contact Us",
           unavailable:"Data Not Available" ,
           home:"Home",
-          view:"View all Products!"
+          view:"View all Products!",
+          contact:"Contact Us",
         },
       },
       fr: {
@@ -67,7 +68,8 @@ i18next
           followus: "Contactez-nous",
           unavailable:"Données non disponibles",
           home:"maison" , 
-          view:"Voir tous les produits!"
+          view:"Voir tous les produits!",
+          contact:"Contactez-nous",
         },
       },
     },
