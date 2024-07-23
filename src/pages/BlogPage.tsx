@@ -12,7 +12,7 @@ const BlogPage = () => {
     queryFn: () => fetch(`${Url}/${lng}/blogs`).then((res) => res.json()),
   });
   if (isFetching) {
-    return <Loader />;
+    return <Loader />
   }
 
   if (error) {
