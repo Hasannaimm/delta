@@ -41,6 +41,12 @@ const Category = () => {
       >
         {currentLanguageCode == "en" ? "Contact Us" : "Contactez-nous"}
       </a>
+      <a
+        href="/blogs"
+        className="hover:text-gray-200 p-2 text-md uppercase"
+      >
+        Blog
+      </a>
       <button 
         className="relative hover:text-gray-200 p-2 text-md uppercase"
         onClick={toggleDropdown}

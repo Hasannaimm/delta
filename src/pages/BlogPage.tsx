@@ -14,10 +14,10 @@ import { useTranslation } from "react-i18next";
         </div>
       </header>
       <main className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-        <article className="bg-white p-4 rounded-lg shadow-md">
-          <h2 className="text-xl font-semibold mb-2">Blog Post Title</h2>
-          <p className="text-gray-600">A brief excerpt from the blog post that gives an overview of the content...</p>
-          <a href="/blog/post-id" className="text-blue-500 hover:underline mt-2 block">Read more</a>
+      <article className="relative bg-cover bg-center h-64 rounded-lg shadow-md" style={{ backgroundImage: 'url(/path-to-your-image.jpg)' }}>
+          <div className="absolute bottom-0 left-0 bg-black bg-opacity-50 text-white p-4 rounded-bl-lg">
+            <h2 className="text-xl font-semibold">Blog Post Title</h2>
+          </div>
         </article>
         <article className="bg-white p-4 rounded-lg shadow-md">
           <h2 className="text-xl font-semibold mb-2">Another Blog Post Title</h2>
