@@ -6,6 +6,7 @@ import BannerAd from "../components/BannerAd";
 import { MainColor } from "../utils";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import AboutUsPart from "../components/AboutUsPart";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -31,6 +32,7 @@ const HomePage = () => {
             {t("view")}
           </button>
         </div>
+        <AboutUsPart/>
         <Star />
         <AdCampain ishome />
       </main>

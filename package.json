@@ -19,6 +19,7 @@
     "dompurify": "^3.0.8",
     "flag-icon-css": "^4.1.7",
     "flag-icons": "^7.1.0",
+    "framer-motion": "^11.3.8",
     "i18next": "^23.8.2",
     "i18next-browser-languagedetector": "^7.2.0",
     "i18next-http-backend": "^2.4.3",
