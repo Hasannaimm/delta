@@ -1,14 +1,15 @@
+import React from "react";
 import { Route, Routes } from "react-router-dom";
-import HomePage from "../pages/HomePage";
-import CategoryPage from "../pages/CategoryPage";
-import ProductPage from "../pages/ProductPage";
-import AboutUsPage from "../pages/AboutUsPage";
-import AllItemsPage from "../pages/AllItemsPage";
-import SearchPage from "../pages/SearchPage";
-import PrivacyPolicy from "../pages/PrivacyPolicy";
-import ContactUsPage from "../pages/ContactUsPage";
-import BlogPage from "../pages/BlogPage";
-import BlogSpecificPage from "../pages/BlogSpecificPage";
+const HomePage = React.lazy(() => import("../pages/HomePage"));
+const CategoryPage = React.lazy(() => import("../pages/CategoryPage"));
+const ProductPage = React.lazy(() => import("../pages/ProductPage"));
+const AboutUsPage = React.lazy(() => import("../pages/AboutUsPage"));
+const AllItemsPage = React.lazy(() => import("../pages/AllItemsPage"));
+const SearchPage = React.lazy(() => import("../pages/SearchPage"));
+const PrivacyPolicy = React.lazy(() => import("../pages/PrivacyPolicy"));
+const ContactUsPage = React.lazy(() => import("../pages/ContactUsPage"));
+const BlogPage = React.lazy(() => import("../pages/BlogPage"));
+const BlogSpecificPage = React.lazy(() => import("../pages/BlogSpecificPage"));
 const Routing = () => {
   return (
     <Routes>

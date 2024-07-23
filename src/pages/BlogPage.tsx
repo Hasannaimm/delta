@@ -29,6 +29,7 @@ const BlogPage = () => {
       </header>
       <main className="grid gap-8 md:grid-cols-2 lg:grid-cols-3  justify-items-">
         {
+            //@ts-expect-error eror
             data.map((item , index) =>{
                 return (
                     <a

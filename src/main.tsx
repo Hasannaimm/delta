@@ -9,15 +9,15 @@ import i18next from "i18next";
 import { initReactI18next } from "react-i18next";
 import HttpApi from "i18next-http-backend";
 import LanguageDetector from "i18next-browser-languagedetector";
+import Loader from "./components/Loader.tsx";
 
 //?Tanstack Query
 const queryClient = new QueryClient();
 
 //?Loading Suspense
 const loadingMarkup = (
-  <div className="loader flex justify-center items-center h-screen">
-    <span className="loader-text">loading</span>
-    <span className="load"></span>
+  <div className=" flex justify-center items-center h-screen">
+    <Loader />
   </div>
 );
 
@@ -46,11 +46,12 @@ i18next
           showing: "Showing from {{f}} to {{l}} of {{t}}",
           related: "Related Products",
           followus: "Contact Us",
-          unavailable:"Data Not Available" ,
-          home:"Home",
-          view:"View all Products!",
-          contact:"Contact Us",
-          blogd:"Did you know that Marseille soap made by Delta Agro has many uses that few people know about.We finally reveal the secret of multi-use! So you can take care of your body, maintain the house, remove stains and clean your laundry and even your jewelry with a single product!"
+          unavailable: "Data Not Available",
+          home: "Home",
+          view: "View all Products!",
+          contact: "Contact Us",
+          blogd:
+            "Did you know that Marseille soap made by Delta Agro has many uses that few people know about.We finally reveal the secret of multi-use! So you can take care of your body, maintain the house, remove stains and clean your laundry and even your jewelry with a single product!",
         },
       },
       fr: {
@@ -67,11 +68,12 @@ i18next
           showing: "Affichage de {{f}} à {{l}} sur {{t}}",
           related: "Produits connexes",
           followus: "Contactez-nous",
-          unavailable:"Données non disponibles",
-          home:"maison" , 
-          view:"Voir tous les produits!",
-          contact:"Contactez-nous",
-          blogd:"Saviez-vous que le savon de Marseille fabriqué par Delta Agro a de nombreuses utilisations que peu de gens connaissent.On vous révèle enfin le secret du multi-usage ! Vous pourrez ainsi prendre soin de votre corps, entretenir la maison, enlever les taches et nettoyer votre linge et même vos bijoux avec un seul produit !"
+          unavailable: "Données non disponibles",
+          home: "maison",
+          view: "Voir tous les produits!",
+          contact: "Contactez-nous",
+          blogd:
+            "Saviez-vous que le savon de Marseille fabriqué par Delta Agro a de nombreuses utilisations que peu de gens connaissent.On vous révèle enfin le secret du multi-usage ! Vous pourrez ainsi prendre soin de votre corps, entretenir la maison, enlever les taches et nettoyer votre linge et même vos bijoux avec un seul produit !",
         },
       },
     },
@@ -84,7 +86,7 @@ i18next
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <Suspense fallback={loadingMarkup}>
     <React.StrictMode>
-      <BrowserRouter >
+      <BrowserRouter>
         <QueryClientProvider client={queryClient}>
           <App />
         </QueryClientProvider>
