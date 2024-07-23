@@ -39,7 +39,7 @@ const BlogPage = () => {
                     style={{ backgroundImage: `url(${Url_img}/${item.img_url})` }}
                   >
                     <div className="absolute bottom-0 left-0 bg-black bg-opacity-50 text-white p-4 rounded-bl-lg">
-                      <h2 className="text-xl font-semibold">Blog Post Title</h2>
+                      <h2 className="text-xl font-semibold">{item.title}</h2>
                     </div>
                   </a>
           
