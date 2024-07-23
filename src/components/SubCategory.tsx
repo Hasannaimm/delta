@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { MainColor, flexing } from "../utils";
 import { useQuery } from "@tanstack/react-query";
 import { CategoryProps } from "../types";
@@ -5,6 +6,8 @@ import { Url, lng } from "../hooks";
 import cookies from "js-cookie";
 
 const Category = () => {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
   const { isPending, error, data } = useQuery<CategoryProps[]>({
     refetchOnWindowFocus: false,
     queryKey: ["repoData"],
@@ -14,6 +17,8 @@ const Category = () => {
   if (isPending) return null;
   if (error) return "An error has occurred: " + error?.message;
   const currentLanguageCode = cookies.get("i18next") || "en";
+
+  const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
 
   return (
     <section
@@ -28,23 +33,34 @@ const Category = () => {
         className="hover:text-gray-200 p-2 text-md uppercase"
         style={{ background: MainColor }}
       >
-        {currentLanguageCode == "en" ? "About Us " : "À propos de nous"}
+        {currentLanguageCode == "en" ? "About Us" : "À propos de nous"}
       </a>
       <a
         href="/contact-us"
-            className="hover:text-gray-200 p-2 text-md uppercase"
+        className="hover:text-gray-200 p-2 text-md uppercase"
       >
         {currentLanguageCode == "en" ? "Contact Us" : "Contactez-nous"}
       </a>
-      {data?.map((item, index) => (
-        <a
-          key={index}
-          className="hover:text-gray-200 p-2 text-md"
-          href={`/${item?.id}`}
-        >
-          {item?.name}
-        </a>
-      ))}
+      <button 
+        className="relative hover:text-gray-200 p-2 text-md uppercase"
+        onClick={toggleDropdown}
+      >
+        {currentLanguageCode == "en" ? "Categories" : "Catégories"}
+      </button>
+
+      {isDropdownOpen && (
+        <div className="absolute top-full right-[50%s] w-[500px] bg-white text-black mt-2 rounded-lg shadow-lg transition-transform transform scale-100 z-50">
+          {data?.map((item, index) => (
+            <a
+              key={index}
+              className="block hover:bg-gray-100 p-2 text-md border-b last:border-b-0"
+              href={`/${item?.id}`}
+            >
+              {item?.name}
+            </a>
+          ))}
+        </div>
+      )}
     </section>
   );
 };

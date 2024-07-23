@@ -15,9 +15,9 @@ const AboutUsPart = () => {
 
   if (isPending) return null;
   if (error) return "An error has occurred: " + error?.message;
-  console.log("====================================");
-  console.log(data);
-  console.log("====================================");
+  const currentYear = new Date().getFullYear();
+  const yearsOfService = currentYear - 2008;
+  
   return (
     <div className="bg-[#0c0c0d]   w-full p-24 flex flex-col justify-center items-center">
       <div className="text-white mb-8 flex flex-col justify-center items-center">
@@ -27,7 +27,7 @@ const AboutUsPart = () => {
       <div className="flex justify-center items-center flex-wrap gap-16">
         <Counter
           from={0}
-          to={100}
+          to={yearsOfService}
           text={"YEARS AT YOUR SERVICE"}
           icon={<SlEnergy size={40} />}
         />
