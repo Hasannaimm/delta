@@ -50,6 +50,7 @@ i18next
           home:"Home",
           view:"View all Products!",
           contact:"Contact Us",
+          blogd:"Did you know that Marseille soap made by Delta Agro has many uses that few people know about.We finally reveal the secret of multi-use! So you can take care of your body, maintain the house, remove stains and clean your laundry and even your jewelry with a single product!"
         },
       },
       fr: {
@@ -70,6 +71,7 @@ i18next
           home:"maison" , 
           view:"Voir tous les produits!",
           contact:"Contactez-nous",
+          blogd:"Saviez-vous que le savon de Marseille fabriqué par Delta Agro a de nombreuses utilisations que peu de gens connaissent.On vous révèle enfin le secret du multi-usage ! Vous pourrez ainsi prendre soin de votre corps, entretenir la maison, enlever les taches et nettoyer votre linge et même vos bijoux avec un seul produit !"
         },
       },
     },

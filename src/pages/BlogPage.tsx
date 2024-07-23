@@ -1,12 +1,15 @@
+import { useTranslation } from "react-i18next";
 
-const BlogPage = () => {
+
+  const BlogPage = () => {
+    const { t } = useTranslation();
   return (
     <div className="p-6 bg-gray-100 min-h-screen Rubik ">
       <header className="flex flex-col md:flex-row md:items-center mb-8">
         <div className="md:w-1/3">
           <h1 className="text-4xl font-bold mb-4">Blog</h1>
           <p className="text-sm text-gray-700">
-            Welcome to our blog! Here you'll find the latest updates, insights, and articles on a variety of topics.
+           {t("blogd")}
           </p>
         </div>
       </header>
