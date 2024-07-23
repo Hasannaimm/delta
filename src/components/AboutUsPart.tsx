@@ -19,7 +19,7 @@ const AboutUsPart = () => {
   const yearsOfService = currentYear - 2008;
   
   return (
-    <div className="bg-[#0c0c0d]   w-full p-24 flex flex-col justify-center items-center">
+    <div className="bg-[#2A2A2A]   w-full p-24 flex flex-col justify-center items-center">
       <div className="text-white mb-8 flex flex-col justify-center items-center">
         <h1 className="Rubik text-5xl w5">About Us</h1>
         <p>OUR KEY FIGURES</p>
