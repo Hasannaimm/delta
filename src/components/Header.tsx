@@ -140,6 +140,18 @@ const Header = () => {
               >
                 {t("contact")}
               </a>
+              <a
+                href="/blog"
+                className="hover:text-gray-200 p-2 text-md border border-[#334774] m-1"
+              >
+               Blog
+              </a>
+              <a
+                href="/news"
+                className="hover:text-gray-200 p-2 text-md border border-[#334774] m-1"
+              >
+        {t("news")}
+              </a>
               {data?.map((item, index) => (
                 <Link
                   key={index}

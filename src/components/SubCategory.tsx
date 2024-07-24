@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState } from "react";
 import { MainColor, flexing } from "../utils";
 import { useQuery } from "@tanstack/react-query";
 import { CategoryProps } from "../types";
@@ -41,13 +41,13 @@ const Category = () => {
       >
         {currentLanguageCode == "en" ? "Contact Us" : "Contactez-nous"}
       </a>
-      <a
-        href="/blogs"
-        className="hover:text-gray-200 p-2 text-md uppercase"
-      >
+      <a href="/blogs" className="hover:text-gray-200 p-2 text-md uppercase">
         Blog
       </a>
-      <button 
+      <a href="/news" className="hover:text-gray-200 p-2 text-md uppercase">
+        {currentLanguageCode == "en" ? "News" : "nouvelles"}
+      </a>
+      <button
         className="relative hover:text-gray-200 p-2 text-md uppercase"
         onClick={toggleDropdown}
       >
