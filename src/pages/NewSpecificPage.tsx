@@ -57,7 +57,7 @@ const NewSpecificPage = () => {
         email,
         comment,
         website,
-        id: id,
+        news_id:id,
       };
       const reponse = await axios.post(
         `https://deltaagrogh.com/admincms/api/newscomment`,
@@ -71,7 +71,6 @@ const NewSpecificPage = () => {
     } catch (error) {
       console.error(error);
     } finally {
-      setComments([...comments, newComment]);
       setName("");
       setEmail("");
       setComment("");
