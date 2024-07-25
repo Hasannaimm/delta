@@ -41,25 +41,37 @@ const Category = () => {
       >
         {currentLanguageCode == "en" ? "Contact Us" : "Contactez-nous"}
       </a>
+      <button
+        className="relative hover:text-gray-200 p-2 text-md uppercase"
+        onMouseEnter={toggleDropdown}
+        onMouseLeave={() => {
+          setIsDropdownOpen(false);
+        }}
+      >
+        {currentLanguageCode == "en" ? "Our PRoducts" : "Nos produits"}
+      </button>
+
       <a href="/blogs" className="hover:text-gray-200 p-2 text-md uppercase">
         Blog
       </a>
       <a href="/news" className="hover:text-gray-200 p-2 text-md uppercase">
         {currentLanguageCode == "en" ? "News" : "nouvelles"}
       </a>
-      <button
-        className="relative hover:text-gray-200 p-2 text-md uppercase"
-        onClick={toggleDropdown}
-      >
-        {currentLanguageCode == "en" ? "Categories" : "Catégories"}
-      </button>
 
       {isDropdownOpen && (
-        <div className="absolute top-full right-[50%s] w-[500px] bg-white text-black mt-2 rounded-lg shadow-lg transition-transform transform scale-100 z-50">
+        <div
+          className="absolute top-full right-[50%s] w-[500px] bg-white text-black -mt-2 rounded-lg shadow-lg transition-transform transform scale-100 z-50"
+          onMouseEnter={() => {
+            setIsDropdownOpen(true);
+          }}
+          onMouseLeave={() => {
+            setIsDropdownOpen(false);
+          }}
+        >
           {data?.map((item, index) => (
             <a
               key={index}
-              className="block hover:bg-gray-100 p-2 text-md border-b last:border-b-0"
+              className="block hover:bg-gray-100 rounded-lg p-2 text-md border-b last:border-b-0"
               href={`/${item?.id}`}
             >
               {item?.name}

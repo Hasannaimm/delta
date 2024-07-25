@@ -67,7 +67,7 @@ const Footer = () => {
           <h3 className=" cursor-pointer"  onClick={()=>{
             navigate("/contact-us")
           }} >{t("followus")}</h3>
-          <ul className={`${flexing} gap-x-4`}>
+          <ul className={`${flexing} gap-x-4 max-sm:mb-3`}>
             {footerData?.whatsapp && (
               <li>
                 <a href={footerData?.whatsapp} target="_blank" rel="noopener noreferrer">
