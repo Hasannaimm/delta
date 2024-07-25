@@ -1,6 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import NewsPage from "../pages/NewsPage";
+import NewSpecificPage from "../pages/NewSpecificPage";
 const HomePage = React.lazy(() => import("../pages/HomePage"));
 const CategoryPage = React.lazy(() => import("../pages/CategoryPage"));
 const ProductPage = React.lazy(() => import("../pages/ProductPage"));
@@ -22,6 +23,7 @@ const Routing = () => {
       <Route path="/blogs" element={<BlogPage />} />
       <Route path="/blog/:id" element={<BlogSpecificPage />} />
       <Route path="/news" element={<NewsPage />} />
+      <Route path="/news/:id" element={<NewSpecificPage />} />
       <Route path="/search/:productname" element={<SearchPage />} />
       <Route path="*" element={<HomePage />} />
       <Route path="/privacy-policy" element={<PrivacyPolicy />} />

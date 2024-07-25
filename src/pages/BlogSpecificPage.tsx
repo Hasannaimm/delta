@@ -14,34 +14,34 @@ const BlogSpecificPage = () => {
     queryKey: ["blogs", id],
     queryFn: () => fetch(`${Url}/${lng}/blog/${id}`).then((res) => res.json()),
   });
-  if (isFetching) {
-    return <Loader />;
-  }
-
-  if (error) {
-    return <div>An error has occurred: {error.message}</div>;
-  }
-
-  const { isFetching :aboutft, error:abouter, data:aboutdt } = useQuery({
+  
+  const {
+    isFetching: aboutft,
+    error: abouter,
+    data: aboutdt
+  } = useQuery({
     refetchOnMount: false,
     refetchOnWindowFocus: false,
     queryKey: ["aboutus"],
     queryFn: () => fetch(`${Url}/${lng}/aboutus`).then((res) => res.json()),
-    enabled:!!data
+    enabled: !!data, // Ensures this query only fetches when data is available
   });
-
-  if (aboutft) {
+  
+  if (isFetching || aboutft) {
     return <Loader />;
   }
-
+  
+  if (error) {
+    return <div>An error has occurred: {error.message}</div>;
+  }
+  
   if (abouter) {
     return <div>An error has occurred: {abouter.message}</div>;
   }
-
+  
   const sanitizedDescription = data
     ? DOMPurify.sanitize(data.description || "")
     : "";
-
   return (
     <>
       <CategoriesHero
