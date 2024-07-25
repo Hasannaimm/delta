@@ -22,6 +22,22 @@ const BlogSpecificPage = () => {
     return <div>An error has occurred: {error.message}</div>;
   }
 
+  const { isFetching :aboutft, error:abouter, data:aboutdt } = useQuery({
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
+    queryKey: ["aboutus"],
+    queryFn: () => fetch(`${Url}/${lng}/aboutus`).then((res) => res.json()),
+    enabled:!!data
+  });
+
+  if (aboutft) {
+    return <Loader />;
+  }
+
+  if (abouter) {
+    return <div>An error has occurred: {abouter.message}</div>;
+  }
+
   const sanitizedDescription = data
     ? DOMPurify.sanitize(data.description || "")
     : "";
@@ -29,7 +45,7 @@ const BlogSpecificPage = () => {
   return (
     <>
       <CategoriesHero
-        imageurl={`${Url_img}/${data?.img_url}`}
+        imageurl={`${Url_img}/${aboutdt?.img_url}`}
         name={data?.title}
         isabout
       />
