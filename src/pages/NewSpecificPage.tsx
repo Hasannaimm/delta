@@ -10,7 +10,6 @@ import { useState } from "react";
 import axios from "axios";
 const NewSpecificPage = () => {
   const { id } = useParams();
-  const [comments, setComments] = useState([]);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [website, setWebsite] = useState("");
@@ -99,7 +98,7 @@ const NewSpecificPage = () => {
       <section className="flex flex-col justify-center items-center mt-28">
         <h1 className="text-2xl">Comments</h1>
         {/* Display comments */}
-        <div className="w-full max-w-full mt-4 px-16 ">
+        <div className="w-full max-w-full mt-4 px-16 max-sm:px-1  ">
           {data?.comments?.length > 0 ? (
             //@ts-expect-error error
             data.comments.map((comment) => (
@@ -123,7 +122,7 @@ const NewSpecificPage = () => {
             <p>No comments yet.</p>
           )}
         </div>
-        <div className="w-full max-w-full px-16 mt-8 Rubik">
+        <div className="w-full max-w-full px-16 mt-8 Rubik  max-sm:px-1 ">
           <h1 className="text-4xl py-5">Leave a comment</h1>
           <div className="mb-4">
             <label className="block text-sm font-medium mb-2">Name*</label>

@@ -1,12 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
-import { useTranslation } from "react-i18next";
 import { lng, Url, Url_img } from "../hooks";
 import Loader from "../components/Loader";
 import CategoriesHero from "../components/CategoriesHero";
 import Category from "../components/SubCategory";
 
 const NewsPage = () => {
-  const { t } = useTranslation();
   const { isFetching, error, data } = useQuery({
     refetchOnMount: false,
     refetchOnWindowFocus: false,
