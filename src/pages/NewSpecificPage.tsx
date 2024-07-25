@@ -111,6 +111,7 @@ const NewSpecificPage = () => {
           )}
         </div>
         <div className="w-full max-w-full px-16 mt-8 Rubik">
+          <h1 className="text-4xl py-5">Leave a comment</h1>
           <div className="mb-4">
             <label className="block text-sm font-medium mb-2">Name</label>
             <input
