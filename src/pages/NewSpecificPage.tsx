@@ -15,7 +15,7 @@ const NewSpecificPage = () => {
   const [email, setEmail] = useState("");
   const [website, setWebsite] = useState("");
   const [comment, setComment] = useState("");
-
+  const [sender, setError] = useState(false);
   const { isFetching, error, data } = useQuery({
     refetchOnMount: false,
     refetchOnWindowFocus: false,
@@ -57,7 +57,7 @@ const NewSpecificPage = () => {
         email,
         comment,
         website,
-        news_id:id,
+        news_id: id,
       };
       const reponse = await axios.post(
         `https://deltaagrogh.com/admincms/api/newscomment`,
@@ -67,13 +67,17 @@ const NewSpecificPage = () => {
       );
       if (reponse.data) {
         alert("Comment sent successfully");
+        setName("");
+        setEmail("");
+        setComment("");
       }
     } catch (error) {
       console.error(error);
+      setError(true);
+      setTimeout(() => {
+        setError(false);
+      }, 3000);
     } finally {
-      setName("");
-      setEmail("");
-      setComment("");
     }
   };
 
@@ -97,11 +101,21 @@ const NewSpecificPage = () => {
         {/* Display comments */}
         <div className="w-full max-w-full mt-4 px-16 ">
           {data?.comments?.length > 0 ? (
+            //@ts-expect-error error
             data.comments.map((comment) => (
               <div key={comment.id} className="border p-4 mb-4">
                 <p className="font-bold">
                   {comment.name} ({comment.email})
                 </p>
+                {comment.website && (
+                  <a
+                    href={comment.website}
+                    className="text-sm text-blue-950"
+                    target="_blank"
+                  >
+                    {comment.website}
+                  </a>
+                )}
                 <p>{comment.comment}</p>
               </div>
             ))
@@ -112,21 +126,25 @@ const NewSpecificPage = () => {
         <div className="w-full max-w-full px-16 mt-8 Rubik">
           <h1 className="text-4xl py-5">Leave a comment</h1>
           <div className="mb-4">
-            <label className="block text-sm font-medium mb-2">Name</label>
+            <label className="block text-sm font-medium mb-2">Name*</label>
             <input
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="w-full border p-2"
+              className={` w-full border p-2 ${
+                sender && name == "" ? "border-red-500" : ""
+              }`}
             />
           </div>
           <div className="mb-4">
-            <label className="block text-sm font-medium mb-2">Email</label>
+            <label className="block text-sm font-medium mb-2">Email*</label>
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full border p-2"
+              className={`w-full border p-2 ${
+                sender && email == "" ? "border-red-500" : ""
+              }`}
             />
           </div>
           <div className="mb-4">
@@ -139,11 +157,13 @@ const NewSpecificPage = () => {
             />
           </div>
           <div className="mb-4">
-            <label className="block text-sm font-medium mb-2">Comment</label>
+            <label className="block text-sm font-medium mb-2">Comment*</label>
             <textarea
               value={comment}
               onChange={(e) => setComment(e.target.value)}
-              className="w-full border p-2"
+              className={`w-full border p-2 ${
+                sender && comment == "" ? "border-red-500" : ""
+              }`}
             />
           </div>
           <button
